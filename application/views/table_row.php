@@ -4,10 +4,18 @@
     <td><?php echo $email; ?></td>
     <td><?php echo $birth_year; ?></td>
     
-    <!-- CHECK -->
-    <td><?php echo $is_male; ?></td>
-    <td><?php echo $privacy_agreed; ?></td>
-
+    <td>
+        <?php if($is_male == 1): 
+                echo "Maschio";
+              else:
+                echo 'Femmina';
+              endif;?>
+    </td>
+    <td>
+        <?php if($privacy_agreed == 1): 
+                echo '<span class="glyphicon glyphicon-ok" id="privacy_agreed_icon" aria-hidden="true"></span>';
+              endif;?>
+    </td>
     <td>
         <div class="btn-group" role="group" aria-label="...">
             <a href="" type="button" class="btn btn-default">
@@ -19,3 +27,7 @@
         </div>
     </td>
 </tr>
+
+<style>
+    
+</style>

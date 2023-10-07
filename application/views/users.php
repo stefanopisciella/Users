@@ -5,7 +5,7 @@
         </div>
         <div class="row">
             <div class="col-xs-6"> <!-- is used col-xs so that in any device the keywords_input will not stack under the "New article button"  -->
-                <a href="./article/view/" type="button" class="btn btn-primary">New article</a>
+                <a href="./article/view/" type="button" class="btn btn-primary">Nuovo utente</a>
             </div>
             <div class="col-xs-6"> <!-- is used col-xs so that in any device the keywords_input will not stack under the "New article button"  -->
               <div class="input-group">
