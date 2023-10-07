@@ -8,9 +8,6 @@ use function PHPSTORM_META\sql_injection_subst;
 
 class User extends AbastractController{
     public static function index() {
-        //
-        echo "MIAOOOO";
-
         if($GLOBALS['f3']->exists('GET.page')) {
             $current_page = $GLOBALS['f3']->get('GET.page');
         } else {

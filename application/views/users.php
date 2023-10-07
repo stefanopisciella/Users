@@ -29,7 +29,6 @@
                         <a type="button" href="./user?page=1&order=1&dir=<?php echo $order1_dir; ?><?php echo $search_param; ?>">Nome <?php echo $direction_arrow_order1; ?></a>        
         
                     </th>
-                    <th>Nome</th>
                     <th>email</th>
                     <th>
                         <a type="button" href="./user?page=1&order=1&dir=<?php echo $order1_dir; ?><?php echo $search_param; ?>">anno nascita <?php echo $direction_arrow_order1; ?></a>        
@@ -37,6 +36,7 @@
                     </th>
                     <th>sesso</th>
                     <th>privacy</th>
+                    <th>Azioni</th>
                 </tr>
             </thead>
             <tbody>
