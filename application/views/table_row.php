@@ -1,9 +1,8 @@
 <tr>
     <td><?php echo $user_id; ?></td>
     <td><?php echo $name; ?></td>
-    <td><?php echo $email; ?></td>
+    <td><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></td>
     <td><?php echo $birth_year; ?></td>
-    
     <td>
         <?php if($is_male == 1): 
                 echo "Maschio";

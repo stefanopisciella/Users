@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="page-header">
-            <h1>Articles</h1>
+            <h1>Utenti</h1>
         </div>
         <div class="row">
             <div class="col-xs-6"> <!-- is used col-xs so that in any device the keywords_input will not stack under the "New article button"  -->
@@ -9,7 +9,7 @@
             </div>
             <div class="col-xs-6"> <!-- is used col-xs so that in any device the keywords_input will not stack under the "New article button"  -->
               <div class="input-group">
-                <input id="keywords_input" type="text" class="form-control" placeholder="Search for...">
+                <input id="keywords_input" type="text" class="form-control" placeholder="Cerca...">
                 <span class="input-group-btn">
                   <button id="search_keywords_button" class="btn btn-default" type="button" onclick="searchKeywords();">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -27,12 +27,10 @@
                     <th>#</th>
                     <th>
                         <a type="button" href="./user?page=1&order=1&dir=<?php echo $order1_dir; ?><?php echo $search_param; ?>">Nome <?php echo $direction_arrow_order1; ?></a>        
-        
                     </th>
                     <th>email</th>
                     <th>
-                        <a type="button" href="./user?page=1&order=1&dir=<?php echo $order1_dir; ?><?php echo $search_param; ?>">anno nascita <?php echo $direction_arrow_order1; ?></a>        
-        
+                        <a type="button" href="./user?page=1&order=2&dir=<?php echo $order1_dir; ?><?php echo $search_param; ?>">anno nascita <?php echo $direction_arrow_order2; ?></a>        
                     </th>
                     <th>sesso</th>
                     <th>privacy</th>
