@@ -6,12 +6,18 @@ create table user (
     ID smallint primary key auto_increment,
     name varchar(50),
     email varchar(50),
-    year smallint,
-    male boolean,
+    birth_year smallint,
+    is_male boolean,
     privacy_agreed boolean
 );
 
-# INSERT INTO article(title, content, creation_datetime, last_update_datetime) VALUES ("1/43 BURAGO RED BULL", "F1 RB19 TEAM ORACLE RED BULL RACING N 1 SEASON 2023 MAX VERSTAPPEN", '2023-09-10 14:30:15','2023-09-11 14:30:15');
+INSERT INTO user(name, email, birth_year, is_male, privacy_agreed) VALUES ("Stefano", "stefano.pisciella1@student.univaq.it", 2000, True, True);
+INSERT INTO user(name, email, birth_year, is_male, privacy_agreed) VALUES ("Pippo", "pippo@gmail.com", 1989, True, False);
+INSERT INTO user(name, email, birth_year, is_male, privacy_agreed) VALUES ("Paperino", "paperino@gmail.com", 1991, True, True);
+INSERT INTO user(name, email, birth_year, is_male, privacy_agreed) VALUES ("Minnie", "minnie@gmail.com", 1966, False, True);
+
+
+
 
 
 
