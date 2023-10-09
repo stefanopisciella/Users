@@ -77,7 +77,7 @@ class User extends AbastractController{
             }
             $GLOBALS['f3']->set('table_rows', $table_rows);
             
-            echo parent::render('application/views/users.php');
+            echo parent::render('application/views/users.html');
         } else{
             echo 'No available users';
         }
