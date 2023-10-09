@@ -35,13 +35,16 @@
             </div>
             <!-- END select -->
             <!-- radios -->
-            <div is="ahh"  class="form-group col-sm-6 col-sm-offset-2">
-                <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Femmina
-                  </label>
-                  <label class="radio-inline">
-                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Maschio
-                </label>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Sesso</label>
+                <div class="col-sm-4"> <!-- we give 2 columns to the select for resizing it (because by default this select is too large) -->
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Femmina
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Maschio
+                    </label>
+                </div>
             </div>
             <!-- END radios -->
 
@@ -225,15 +228,4 @@
         border-width : 0;
         font-weight: bold;
     }
-
-    /*
-    #muh {
-        padding-left: 15px;
-        padding-right: 15px;
-        width: 200px;
-        height: 20px;
-
-
-
-    } */
 </style>
