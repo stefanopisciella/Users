@@ -23,6 +23,7 @@ $f3->set('AUTOLOAD','application/;');
 $f3->set('ESCAPE',FALSE);
 
 // ROUTES
+$f3->route('GET /user/remove/@id','controllers\User->remove');
 $f3->route('GET /user','controllers\User->index');
 
 $f3->run(); // it matches routes against incoming URI

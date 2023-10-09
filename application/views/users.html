@@ -135,6 +135,39 @@
 </div>
 
 <script>
+    function getClickedButtonValue(clicked_button_object) {
+        clicked_button_value = clicked_button_object.value;
+        return clicked_button_value;
+    }
+    
+    function removeUser(clicked_button_object) {
+        clicked_button_value = getClickedButtonValue(clicked_button_object);
+        
+        let confirm_text = "Do you really want to remove article #" + clicked_button_value + "?";
+        if(confirm(confirm_text)) {
+            // user confirmed the action
+            alert("OKKKKK");
+        }
+    }
+
+    function updateArticle(clicked_button_object) {
+        clicked_button_value = getClickedButtonValue(clicked_button_object);
+        
+        var articles_url = window.location.href;
+        var edit_article_url = articles_url + "/view?id=" + clicked_button_value;
+        
+        window.location.href = edit_article_url; // redirect to the url contained in edit_article_url
+    }
+
+    function getArticleDetails(clicked_button_object) {
+        clicked_button_value = getClickedButtonValue(clicked_button_object);
+        
+        var articles_url = window.location.href;
+        var article_details_url = articles_url + "/" + clicked_button_value;
+        
+        window.location.href = article_details_url; // redirect to the url contained in edit_article_url
+    }
+
     function searchKeywords() {
         var current_url = new URL(document.location.href);
         
@@ -160,7 +193,7 @@
         }
     }
 
-    // Get the input field
+     // Get the input field
     var input = document.getElementById("keywords_input");
 
     // Execute a function when the user presses a key on the keyboard
@@ -173,50 +206,6 @@
         document.getElementById("search_keywords_button").click();
     }
     });
-    
-
-    
-    function getClickedButtonValue(clicked_button_object) {
-        clicked_button_value = clicked_button_object.value;
-        return clicked_button_value;
-    }
-    
-    function deleteArticle(clicked_button_object) {
-        clicked_button_value = getClickedButtonValue(clicked_button_object);
-        
-        let confirm_text = "Do you really want to remove article #" + clicked_button_value + "?";
-        if(confirm(confirm_text)) {
-            var articles_url = window.location.href;
-            var remove_article_url = articles_url + "/remove/" + clicked_button_value;
-            
-            /* don't use Ajax when you have to redirect a webpage, it won't work!
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("GET", remove_article_url, false);
-            xhttp.send(); //send a http request */
-
-            window.location.href = remove_article_url; // redirect to the url contained in remove_article_url
-            // at this point the client will be redirected to the '/article' page by the "reroute" function present in the 
-            // controller class
-        }
-    }
-
-    function updateArticle(clicked_button_object) {
-        clicked_button_value = getClickedButtonValue(clicked_button_object);
-        
-        var articles_url = window.location.href;
-        var edit_article_url = articles_url + "/view?id=" + clicked_button_value;
-        
-        window.location.href = edit_article_url; // redirect to the url contained in edit_article_url
-    }
-
-    function getArticleDetails(clicked_button_object) {
-        clicked_button_value = getClickedButtonValue(clicked_button_object);
-        
-        var articles_url = window.location.href;
-        var article_details_url = articles_url + "/" + clicked_button_value;
-        
-        window.location.href = article_details_url; // redirect to the url contained in edit_article_url
-    }
 </script>
 
 <style>

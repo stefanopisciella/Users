@@ -17,12 +17,14 @@
     </td>
     <td>
         <div class="btn-group" role="group" aria-label="...">
-            <a href="" type="button" class="btn btn-default">
+            <!-- edit user -->
+            <button type="button" class="btn btn-default" value="<?php echo $user_id; ?>">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            </a>
-            <a href="" type="button" class="btn btn-default">
+            </button>
+            <!-- remove user button -->
+            <button type="button" class="btn btn-default" value="<?php echo $user_id; ?>" onclick="removeUser(this);">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </a>
+            </button>
         </div>
     </td>
 </tr>

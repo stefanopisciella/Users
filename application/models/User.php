@@ -2,10 +2,10 @@
 namespace models;
 
 class User {
-    public static function remove($article_id) {
+    public static function remove($user_id) {
         $GLOBALS['f3']->get('DB')->exec(
-            'DELETE FROM article WHERE ID=?;',
-            $article_id
+            'DELETE FROM user WHERE ID=?;',
+            $user_id
         );
     }
 

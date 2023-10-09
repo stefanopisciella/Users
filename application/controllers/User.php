@@ -7,6 +7,15 @@ use models\User as ModelUser;
 use function PHPSTORM_META\sql_injection_subst;
 
 class User extends AbastractController{
+    public static function remove() {
+        $user_id = $GLOBALS['f3']->get('PARAMS.id');
+        // i should check wether the $article_id contains an integer
+        
+        ModelUser::remove($user_id); 
+
+        $GLOBALS['f3']->reroute('/user');
+    }
+    
     public static function index() {
         if($GLOBALS['f3']->exists('GET.page')) {
             $current_page = $GLOBALS['f3']->get('GET.page');
