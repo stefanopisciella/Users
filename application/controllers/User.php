@@ -15,6 +15,10 @@ class User extends AbastractController{
 
         $GLOBALS['f3']->reroute('/user');
     }
+
+    public static function injectUserTable() {
+
+    }
     
     public static function index() {
         if($GLOBALS['f3']->exists('GET.page')) {
