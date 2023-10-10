@@ -131,56 +131,62 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </button> 
             </div>
 
+            <?php echo $page_content; ?>
             <div id="page_content">
-              <!-- we inject the page_content here -->
-              <?php echo $page_content; ?>
+              <!-- we inject the page_content here using Jquery -->
             </div>
+            
+            <button id="ajaxButton" type="button">Make a request</button>
         </div>
     </div>
         <script>
-            $(document).ready(function(){
-                // jQuery code goes here...
+            (() => {
+                let httpRequest;
+                document.getElementById("ajaxButton").addEventListener("click", makeRequest);
 
-                // const obj = JSON.parse();
-                var httpRequest = new XMLHttpRequest();
+                function makeRequest() {
+                httpRequest = new XMLHttpRequest();
 
-                alert(httpRequest.responseXML);
-
-    
-            });
-            
-            function getClickedButtonValue(clicked_button_object) {
-                clicked_button_value = clicked_button_object.value;
-                return clicked_button_value;
-            }
-        
-            function sendRemoveUserRequest(user_id) {
-                var httpRequest = new XMLHttpRequest();
-        
                 if (!httpRequest) {
                     alert("Giving up :( Cannot create an XMLHTTP instance");
                     return false;
                 }
-                httpRequest.onreadystatechange = handleServerResponse;
-                httpRequest.open("GET", "test.html");
+                httpRequest.onreadystatechange = alertContents;
+                httpRequest.open("GET", "http://localhost/Users/public/user/ciao");
                 httpRequest.send();
-        
-            }
-        
-            function handleServerResponse() {
+                }
+
+                function alertContents() {
                     if (httpRequest.readyState === XMLHttpRequest.DONE) {
                         if (httpRequest.status === 200) {
-                                var page_content = httpRequest.responseXML;
-                                $( "#page_content" ).append(page_content);
-
-                                
+                        alert(httpRequest.responseText);
                         } else {
-                            alert("There was a problem with the request.");
+                        alert("There was a problem with the request.");
                         }
                     }
-            }
-          
-          
+                }
+            })();
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            /*
             function removeUser(clicked_button_object) {
                 var user_id = getClickedButtonValue(clicked_button_object);
                 
@@ -190,45 +196,52 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     sendRemoveUserRequest(user_id);
                 }
             }
-          
-        function searchKeywords() {
-              var current_url = new URL(document.location.href);
-              
-              var keywords = document.getElementById("keywords_input").value;
-      
-              var params = new URLSearchParams(current_url.search);
-      
-              // it checks if the current url contains the query string
-              if(current_url.toString().includes('?') == true) {
-                  // the current URL has the query string
-      
-                  // the following 4 instructions remove all prexisting parameters so that we can replace them with the new parameters relative to the pagination of the search pages
-                  params.delete("page");
-                  params.delete("order");
-                  params.delete("dir");
-                  params.delete("search");
-      
-                  params.append("search", keywords); // it adds the new search parameter
-      
-                  location.search = params.toString(); // redirect to the current url that now contains the new parameters
-              } else {
-                  document.location.href = current_url + '?search=' + keywords; 
-              }
-          }
-      
-           // Get the input field
-          var input = document.getElementById("keywords_input");
-      
-          // Execute a function when the user presses a key on the keyboard
-          input.addEventListener("keypress", function(event) {
-          // If the user presses the "Enter" key on the keyboard
-          if (event.key === "Enter") {
-              // Cancel the default action, if needed
-              event.preventDefault();
-              // Trigger the button element with a click
-              document.getElementById("search_keywords_button").click();
-          }
-          });
+            
+            function getClickedButtonValue(clicked_button_object) {
+                clicked_button_value = clicked_button_object.value;
+                return clicked_button_value;
+            }
+
+            function sendRemoveUserRequest(user_id) {
+                var current_url = window.location.href;
+                let httpRequest = new XMLHttpRequest();
+        
+                if (!httpRequest) {
+                    alert("Cannot create an XMLHTTP instance");
+                    return false;
+                }
+                httpRequest.onreadystatechange = handleServerResponse;
+                httpRequest.open("GET", current_url + '/remove/' + user_id);
+                httpRequest.send();
+            }
+        
+            function handleServerResponse() {
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    if (httpRequest.status === 200) {
+                            // 
+                            alert("prova");
+
+                            var deserialized_response = JSON.parse(httpRequest.responseXML);
+                            var page_content = deserialized_response.data.html;
+                            
+                            alert(page_content);
+                            // $("#page_content").append(page_content);
+
+                    } else {
+                        alert("There was a problem with the request.");
+                    }
+                }
+            } */
+
+             /*
+            $(document).ready(function(){
+                // jQuery code goes here...
+
+                // const obj = JSON.parse();
+
+
+    
+            }); */
       </script>
     </body>
 </html>

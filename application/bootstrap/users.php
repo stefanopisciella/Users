@@ -23,6 +23,9 @@ $f3->set('AUTOLOAD','application/;');
 $f3->set('ESCAPE',FALSE);
 
 // ROUTES
+// CHECK
+$f3->route('GET /user/ciao','controllers\User->prova');
+
 $f3->route('GET /user/remove/@id','controllers\User->remove');
 $f3->route('GET /user','controllers\User->index');
 

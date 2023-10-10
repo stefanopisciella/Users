@@ -14,6 +14,7 @@ class User extends AbastractController{
         
         ModelUser::remove($user_id); 
 
+        User::sendUserTableToClient();
     }
 
     public static function index() {
@@ -45,7 +46,7 @@ class User extends AbastractController{
             $user_table = $GLOBALS['view']->render('application/views/user_table.html'); 
 
         } else{
-            $user_table = 'No available users';
+            $user_table = '<h2>No available users</h2>';
         }
 
         return $user_table;
@@ -71,6 +72,10 @@ class User extends AbastractController{
 
     public static function renderLayout() {
         echo parent::render('application/layouts/layout.html'); // inject user_table within the user.html page */
+    }
+
+    public static function prova() {
+        echo "<label>CIAO</label>";
     }
 
 
