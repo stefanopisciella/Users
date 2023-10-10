@@ -16,11 +16,6 @@ class User extends AbastractController{
         $GLOBALS['f3']->reroute('/user');
     }
 
-    public static function injectUserTable() {
-
-
-    }
-    
     public static function index() {
         if($GLOBALS['f3']->exists('GET.page')) {
             $current_page = $GLOBALS['f3']->get('GET.page');
@@ -68,11 +63,9 @@ class User extends AbastractController{
 
         parent::definePagination($GLOBALS['max_num_of_users_per_page'], $total_num_of_users , $GLOBALS['url_prefix'] . "user", $current_page, $order, $dir, $keywords);
 
-        User::renderLayout(); // it renders all html elements excepts those that belong to user_table
-        
         $user_table = User::makeUserTable($users, $order, $dir);
-
-        User::sendUserTableToClient($user_table);
+        $GLOBALS['f3']->set('page_content', $user_table); // inject user_table into layout
+        echo $GLOBALS['view']->render('application/layouts/layout.html');
     }
 
     public static function makeUserTable($users, $order, $dir) {

@@ -146,7 +146,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <?php echo $results_for_heading; ?>
             </div>
             <div id="page_content">
-              <!-- we inject the page_content using JQUERY -->
+              <!-- we inject the page_content here -->
+              <?php echo $page_content; ?>
             </div>
             
             <?php echo $results_num_label; ?>
@@ -174,9 +175,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
         <script>
             $(document).ready(function(){
-                console.log("MIAO");
-                alert("ciao");
                 // jQuery code goes here...
+
+                // const obj = JSON.parse();
+                var httpRequest = new XMLHttpRequest();
+
+                alert(httpRequest.responseXML);
+
     
             });
             
