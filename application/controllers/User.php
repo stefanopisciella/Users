@@ -66,14 +66,16 @@ class User extends AbastractController{
             $GLOBALS['f3']->set('results_num_label', ''); // hide the results_num label
         }
 
-        User::setTheDirectionOfUsersOrder($order, $dir);
-        
         parent::definePagination($GLOBALS['max_num_of_users_per_page'], $total_num_of_users , $GLOBALS['url_prefix'] . "user", $current_page, $order, $dir, $keywords);
+
+        User::renderLayout(); // it renders all html elements excepts those that belong to user_table
         
-        User::makeUserTable($users, $order, $dir);
+        $user_table = User::makeUserTable($users, $order, $dir);
 
-        User::renderLayout();
+        User::sendUserTableToClient($user_table);
 
+        // 
+        echo "MIAO";
     }
 
     public static function makeUserTable($users, $order, $dir) {
@@ -98,25 +100,30 @@ class User extends AbastractController{
             
             $user_table = $GLOBALS['view']->render('application/views/user_table.html'); 
 
-            /*
-            $GLOBALS['f3']->set('user_table', $user_table);
-            echo parent::render('application/views/users.html'); // inject user_table within the user.html page */
         } else{
             $user_table = 'No available users';
         }
-        
-        
+
+        return $user_table;
     }
 
     public static function sendUserTableToClient($user_table) {
-        $response = array();
-        $response['error'] = false;
-        $response['error_msg'] = "";
+        $data = array();
+        $data['html'] = $user_table;
+        
+        $response = array(
+            'status' => 'success',
+            'data' => $data
+        );
+
+        // set the content type to json so that the JS does not need to parse it
+        header('Content-type: application/json');
+        echo json_encode($response);
     }
 
 
     public static function renderLayout() {
-        echo parent::render('application/views/users.html'); // inject user_table within the user.html page */
+        echo parent::render('application/layouts/layout.html'); // inject user_table within the user.html page */
     }
 
 
