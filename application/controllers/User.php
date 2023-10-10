@@ -73,9 +73,6 @@ class User extends AbastractController{
         $user_table = User::makeUserTable($users, $order, $dir);
 
         User::sendUserTableToClient($user_table);
-
-        // 
-        echo "MIAO";
     }
 
     public static function makeUserTable($users, $order, $dir) {
@@ -117,7 +114,8 @@ class User extends AbastractController{
         );
 
         // set the content type to json so that the JS does not need to parse it
-        header('Content-type: application/json');
+        // CHECK 
+        // header('Content-type: application/json');
         echo json_encode($response);
     }
 

@@ -17,7 +17,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.11/URI.min.js"></script>
-        
     </head>
     <body>
         <div class="container">
@@ -174,56 +173,57 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         </div>
         <script>
-          function getClickedButtonValue(clicked_button_object) {
-              clicked_button_value = clicked_button_object.value;
-              return clicked_button_value;
-          }
-      
-          function sendRemoveUserRequest(user_id) {
-              var httpRequest = new XMLHttpRequest();
-      
-              if (!httpRequest) {
-                  alert("Giving up :( Cannot create an XMLHTTP instance");
-                  return false;
-              }
-              httpRequest.onreadystatechange = handleServerResponse;
-              httpRequest.open("GET", "test.html");
-              httpRequest.send();
-      
-          }
-      
-          function handleServerResponse() {
-                  if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                      if (httpRequest.status === 200) {
-                          alert(httpRequest.responseXML);
-      
-                      } else {
-                          alert("There was a problem with the request.");
-                      }
-                  }
-          }
-          
-          
-          function removeUser(clicked_button_object) {
-              var user_id = getClickedButtonValue(clicked_button_object);
-              
-              let confirm_text = "Sei sicuro di voler rimuovere l'utente #" + user_id + "?";
-              if(confirm(confirm_text)) {
-                  // user confirmed the action
-                  sendRemoveUserRequest(user_id);
-              }
-          }
-          
-        $(document).ready(function(){
-            alert("ciao");
-            // jQuery code goes here...
+            $(document).ready(function(){
+                console.log("MIAO");
+                alert("ciao");
+                // jQuery code goes here...
     
-        });
-         
-      
+            });
+            
+            function getClickedButtonValue(clicked_button_object) {
+                clicked_button_value = clicked_button_object.value;
+                return clicked_button_value;
+            }
         
+            function sendRemoveUserRequest(user_id) {
+                var httpRequest = new XMLHttpRequest();
         
+                if (!httpRequest) {
+                    alert("Giving up :( Cannot create an XMLHTTP instance");
+                    return false;
+                }
+                httpRequest.onreadystatechange = handleServerResponse;
+                httpRequest.open("GET", "test.html");
+                httpRequest.send();
         
+            }
+        
+            function handleServerResponse() {
+                    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                        if (httpRequest.status === 200) {
+                                
+
+                                var page_content = httpRequest.responseXML;
+                                $( "#page_content" ).append(page_content);
+
+                                
+                        } else {
+                            alert("There was a problem with the request.");
+                        }
+                    }
+            }
+          
+          
+            function removeUser(clicked_button_object) {
+                var user_id = getClickedButtonValue(clicked_button_object);
+                
+                let confirm_text = "Sei sicuro di voler rimuovere l'utente #" + user_id + "?";
+                if(confirm(confirm_text)) {
+                    // user confirmed the action
+                    sendRemoveUserRequest(user_id);
+                }
+            }
+          
         function searchKeywords() {
               var current_url = new URL(document.location.href);
               
