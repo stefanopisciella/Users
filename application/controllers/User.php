@@ -109,7 +109,9 @@ class User extends AbastractController{
     }
 
     public static function sendUserTableToClient($user_table) {
-    
+        $response = array();
+        $response['error'] = false;
+        $response['error_msg'] = "";
     }
 
 
