@@ -1,0 +1,24 @@
+<div class="table-responsive">          
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    <a type="button" href="./user?page=1&order=1&dir=<?php echo $order1_dir; ?><?php echo $search_param; ?>">Nome <?php echo $direction_arrow_order1; ?></a>        
+                </th>
+                <th>email</th>
+                <th>
+                    <a type="button" href="./user?page=1&order=2&dir=<?php echo $order1_dir; ?><?php echo $search_param; ?>">anno nascita <?php echo $direction_arrow_order2; ?></a>        
+                </th>
+                <th>sesso</th>
+                <th>privacy</th>
+                <th>Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($table_rows as $table_row): ?> 
+            <?php echo $table_row; ?>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

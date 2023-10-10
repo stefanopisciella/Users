@@ -18,6 +18,7 @@ class User extends AbastractController{
 
     public static function injectUserTable() {
 
+
     }
     
     public static function index() {
@@ -69,10 +70,13 @@ class User extends AbastractController{
         
         parent::definePagination($GLOBALS['max_num_of_users_per_page'], $total_num_of_users , $GLOBALS['url_prefix'] . "user", $current_page, $order, $dir, $keywords);
         
-        User::injectUsersIntoCurrentPage($users);
+        User::makeUserTable($users, $order, $dir);
+
+        User::renderLayout();
+
     }
 
-    public static function injectUsersIntoCurrentPage($users) {
+    public static function makeUserTable($users, $order, $dir) {
         $num_users = sizeof($users);
         if($num_users > 0) {
             $table_rows= Array();
@@ -88,13 +92,31 @@ class User extends AbastractController{
                 $table_row = $GLOBALS['view']->render('application/views/table_row.php'); // note that in this case i don't use "parent::render" because we don't have to flash the header
                 array_push($table_rows, $table_row);
             }
-            $GLOBALS['f3']->set('table_rows', $table_rows);
+            $GLOBALS['f3']->set('table_rows', $table_rows); // inject rows within the user_table
             
-            echo parent::render('application/views/users.html');
+            User::setTheDirectionOfUsersOrder($order, $dir);
+            
+            $user_table = $GLOBALS['view']->render('application/views/user_table.html'); 
+
+            /*
+            $GLOBALS['f3']->set('user_table', $user_table);
+            echo parent::render('application/views/users.html'); // inject user_table within the user.html page */
         } else{
-            echo 'No available users';
+            $user_table = 'No available users';
         }
+        
+        
     }
+
+    public static function sendUserTableToClient($user_table) {
+    
+    }
+
+
+    public static function renderLayout() {
+        echo parent::render('application/views/users.html'); // inject user_table within the user.html page */
+    }
+
 
     public static function setTheDirectionOfUsersOrder($order, $dir) {
         // order = 1 means that it orders by the the creation_datetime column of the DB table
