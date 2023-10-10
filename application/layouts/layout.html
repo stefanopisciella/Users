@@ -135,14 +135,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div id="page_content">
               <!-- we inject the page_content here using Jquery -->
             </div>
-            
-            <button id="ajaxButton" type="button">Make a request</button>
         </div>
     </div>
         <script>
+            /*
+            let httpRequest;
+
             (() => {
-                let httpRequest;
-                document.getElementById("ajaxButton").addEventListener("click", makeRequest);
+                document
+                .getElementById("ajaxButton")
+                .addEventListener("click", makeRequest);
 
                 function makeRequest() {
                 httpRequest = new XMLHttpRequest();
@@ -157,52 +159,72 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 }
 
                 function alertContents() {
-                    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    try {
+                        if (httpRequest.readyState === XMLHttpRequest.DONE) {
                         if (httpRequest.status === 200) {
-                        alert(httpRequest.responseText);
+                            alert(httpRequest.responseText);
                         } else {
-                        alert("There was a problem with the request.");
+                            alert("There was a problem with the request.");
                         }
+                        }
+                    } catch (e) {
+                        alert(`Caught Exception: ${e.description}`);
                     }
                 }
-            })();
+            })();*/
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /*
+            let httpRequest;
+
             function removeUser(clicked_button_object) {
                 var user_id = getClickedButtonValue(clicked_button_object);
                 
                 let confirm_text = "Sei sicuro di voler rimuovere l'utente #" + user_id + "?";
                 if(confirm(confirm_text)) {
                     // user confirmed the action
-                    sendRemoveUserRequest(user_id);
+                    makeRequest(user_id);
                 }
             }
             
             function getClickedButtonValue(clicked_button_object) {
                 clicked_button_value = clicked_button_object.value;
                 return clicked_button_value;
+            } 
+
+            function makeRequest(user_id) {
+                httpRequest = new XMLHttpRequest();
+
+                if (!httpRequest) {
+                    alert("Cannot create an XMLHTTP instance");
+                    return false;
+                }
+                
+                httpRequest.onreadystatechange = processResponse;
+                
+                var current_url = window.location.href;
+                httpRequest.open("GET", current_url + '/remove/' + user_id);
+                httpRequest.send();
             }
 
-            function sendRemoveUserRequest(user_id) {
+            function processResponse() {
+                try {
+                    if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                        if (httpRequest.status === 200) {
+                            // alert(httpRequest.responseText);
+                            var deserialized_response = JSON.parse(httpRequest.responseText);
+                            var new_user_table = deserialized_response.data.html;
+
+                            $("#page_content").replaceWith('<div id="page_content">' + new_user_table + '</div>'); // replace the old user_table with the updated user-table
+                        } else {
+                            alert("There was a problem with the request.");
+                        }
+                    }
+                } catch (e) {
+                    alert(`Caught Exception: ${e.description}`);
+                }
+            }
+
+            /*
+            function sendRequest(user_id) {
                 var current_url = window.location.href;
                 let httpRequest = new XMLHttpRequest();
         
@@ -210,16 +232,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     alert("Cannot create an XMLHTTP instance");
                     return false;
                 }
-                httpRequest.onreadystatechange = handleServerResponse;
+                httpRequest.onreadystatechange = handleServerResponse(httpRequest);
                 httpRequest.open("GET", current_url + '/remove/' + user_id);
                 httpRequest.send();
             }
         
-            function handleServerResponse() {
+            function handleServerResponse(httpRequest) {
                 if (httpRequest.readyState === XMLHttpRequest.DONE) {
                     if (httpRequest.status === 200) {
                             // 
-                            alert("prova");
+                            console.log("prova");
 
                             var deserialized_response = JSON.parse(httpRequest.responseXML);
                             var page_content = deserialized_response.data.html;
