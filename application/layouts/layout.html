@@ -46,7 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                       <!-- select -->
                       <div class="form-group">
                           <label for="birth_year" class="col-sm-2 control-label">Anno nascita</label>
-                          <div class="col-sm-2"> <!-- we give 2 columns to the select for resizing it (because by default this select is too large) -->
+                          <div class="col-sm-3"> <!-- we give 2 columns to the select for resizing it (because by default this select is too large) -->
                               <select id="birth_year" class="form-control">
                                   <option>-</option> <!-- default option -->
                                   <?php for($i=2005;$i>=1930;$i--): ?> 
@@ -61,10 +61,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           <label class="col-sm-2 control-label">Sesso</label>
                           <div class="col-sm-4"> <!-- we give 2 columns to the select for resizing it (because by default this select is too large) -->
                               <label class="radio-inline">
-                                  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Femmina
+                                  <input type="radio" name="inlineRadioOptions" id="is_female_button" value="false" onclick="overrideRadioButtonValue(this);"> Femmina
                               </label>
                               <label class="radio-inline">
-                                  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Maschio
+                                  <input type="radio" name="inlineRadioOptions" id="is_male_button" value="false" onclick="overrideRadioButtonValue(this);"> Maschio
                               </label>
                           </div>
                       </div>
@@ -85,7 +85,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                    <button type="button" class="btn btn-primary" onclick="addUser();">Salva</button>
+                    <button type="button" class="btn btn-primary" onclick="createUser();">Salva</button>
                 </div>
               </div>
             </div>
@@ -188,8 +188,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 }
             }
 
-            function addUser() {
-                requestUserRemoval();
+            function createUser() {
+                getUserInput();
+                // requestUserCreation();
 
 
             }
@@ -211,8 +212,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     "Content-Type",
                     "application/json",
                 );
-                httpRequest.send(`userName=${encodeURIComponent(userName)}`);
+                // httpRequest.send(`userName=${encodeURIComponent(userName)}`);
+                httpRequest.send();
+
+
             }
+
+            function getUserInput() {
+                var name = $("#input_name").attr("value");
+                var email = $("#input_email").attr("value");
+                var birth_year = $("#birth_year").attr("value");
+                var is_male = $("#inlineRadio2").attr("checked");
+
+                alert($("#inlineRadio2").attr("value"));
+                /*
+                if(is_male == true) {
+                    alert("FEMMINA");
+                } */
+
+
+
+                // var arr = {name: , email:'value2'};
+
+            }
+
+          
+
+
+
 
             function processResponseToUserCreation() {
                 /*
@@ -224,6 +251,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     alert("There was a problem with the request.");
                     }
                 } */
+            }
+
+            function overrideRadioButtonValue(clicked_radio_button) {
+                clicked_radio_button.value = true; // in this way i can check in a second moment which radio button has been clicked
             }
       </script>
     </body>
