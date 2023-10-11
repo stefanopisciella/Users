@@ -34,7 +34,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                       <div class="form-group">
                           <label for="input_name" class="col-sm-2 control-label">Nome</label>
                           <div class="col-sm-10">
-                              <input type="text" class="form-control" id="input_name" placeholder="">
+                              <input type="text" class="form-control" id="input_name" placeholder="" value="">
                           </div>
                       </div>
                       <div class="form-group">
@@ -61,10 +61,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           <label class="col-sm-2 control-label">Sesso</label>
                           <div class="col-sm-4"> <!-- we give 2 columns to the select for resizing it (because by default this select is too large) -->
                               <label class="radio-inline">
-                                  <input type="radio" name="inlineRadioOptions" id="is_female_button" value="false" onclick="overrideRadioButtonValue(this);"> Femmina
+                                  <input type="radio" name="inlineRadioOptions" id="is_female_button" value="false"> Femmina
                               </label>
                               <label class="radio-inline">
-                                  <input type="radio" name="inlineRadioOptions" id="is_male_button" value="false" onclick="overrideRadioButtonValue(this);"> Maschio
+                                  <input type="radio" name="inlineRadioOptions" id="is_male_button" value="false"> Maschio
                               </label>
                           </div>
                       </div>
@@ -74,7 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           <div class="col-sm-offset-2 col-sm-10">
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox"> Normativa privacy
+                                      <input id="privacy_button" type="checkbox"> Normativa privacy
                                   </label>
                               </div>
                           </div>
@@ -219,21 +219,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function getUserInput() {
-                var name = $("#input_name").attr("value");
-                var email = $("#input_email").attr("value");
-                var birth_year = $("#birth_year").attr("value");
-                var is_male = $("#inlineRadio2").attr("checked");
+                var name = $("#input_name").val();
+                var email = $("#input_email").val();
+                var birth_year = $("#birth_year").val();
+                var is_female = document.getElementById("is_female_button").checked;
+                var is_male = document.getElementById("is_male_button").checked;
+                var privacy_agreed = document.getElementById("privacy_button").checked;
 
-                alert($("#inlineRadio2").attr("value"));
+                var post_content = {"name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
+
+                //
+                alert(JSON.stringify(post_content));
+                return JSON.stringify(post_content);
                 /*
-                if(is_male == true) {
-                    alert("FEMMINA");
-                } */
-
-
-
-                // var arr = {name: , email:'value2'};
-
+                var arr = [];
+                arr["name"] = "Stefano";
+                alert(arr["name"]); */
+                //
+                // alert(JSON.stringify(arr));
             }
 
           
@@ -251,10 +254,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     alert("There was a problem with the request.");
                     }
                 } */
-            }
-
-            function overrideRadioButtonValue(clicked_radio_button) {
-                clicked_radio_button.value = true; // in this way i can check in a second moment which radio button has been clicked
             }
       </script>
     </body>
