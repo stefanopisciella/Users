@@ -12,8 +12,8 @@ class User extends AbastractController{
         
         // i should check wether the $article_id contains an integer
         
-        ModelUser::remove($user_id); 
-
+        ModelUser::remove($user_id);
+        
         User::sendUserTableToClient();
     }
 
@@ -76,6 +76,33 @@ class User extends AbastractController{
 
     public static function prova() {
         echo "<label>CIAO</label>";
+    }
+
+    public static function save() {
+        /*
+        if($GLOBALS['f3']->exists('POST.title') && $GLOBALS['f3']->exists('POST.content')) {
+            // client requested with a POST method the UPDATE or the CREATION of the article 
+            $article_title = $GLOBALS['f3']->get('POST.title');
+            $article_content = $GLOBALS['f3']->get('POST.content');
+
+            $article = array(
+                1 => $article_title,
+                2 => $article_content
+            );
+
+            $article_id = null;
+            $article_id = $GLOBALS['f3']->get('PARAMS.id');
+            
+            ModelArticle::save($article, $article_id); 
+            
+            if($article_id == null) {
+                // client requested with a POST method the CREATION of the article 
+                $GLOBALS['f3']->reroute('/article?page=1&order=1&dir=1');
+            } else {
+                // client requested with a POST method the UPDATE of the article 
+                $GLOBALS['f3']->reroute('/article/' . $article_id);
+            }
+        } */
     }
 
 

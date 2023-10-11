@@ -23,9 +23,10 @@ $f3->set('AUTOLOAD','application/;');
 $f3->set('ESCAPE',FALSE);
 
 // ROUTES
-// CHECK
-$f3->route('GET /user/ciao','controllers\User->prova');
-
+$f3->route('GET /user/view/@id','controllers\user->view'); // for showing the UPDATE user form
+$f3->route('POST /user/save/@id','controllers\user->save'); // for UPDATING a user
+// $f3->route('GET /user/view','controllers\user->view'); // for showing the CREATE user form
+$f3->route('POST /user/save','controllers\user->save'); // for CREATING a new user
 $f3->route('GET /user/remove/@id','controllers\User->remove');
 $f3->route('GET /user','controllers\User->index');
 

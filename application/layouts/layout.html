@@ -80,12 +80,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           </div>
                       </div>
                   </form>
-
+                  <div class="alert alert-danger" role="alert">Ricompila il form</div>
                   
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                  <button type="button" class="btn btn-primary">Salva</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+                    <button type="button" class="btn btn-primary" onclick="addUser();">Salva</button>
                 </div>
               </div>
             </div>
@@ -131,48 +131,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </button> 
             </div>
 
-            <?php echo $page_content; ?>
             <div id="page_content">
-              <!-- we inject the page_content here using Jquery -->
+                <!-- we inject the page_content here using Jquery (after the removal, creation and update of a user) or F3 when the client requests the index page -->
+                <?php echo $page_content; ?>
             </div>
+
         </div>
     </div>
         <script>
-            /*
-            let httpRequest;
-
-            (() => {
-                document
-                .getElementById("ajaxButton")
-                .addEventListener("click", makeRequest);
-
-                function makeRequest() {
-                httpRequest = new XMLHttpRequest();
-
-                if (!httpRequest) {
-                    alert("Giving up :( Cannot create an XMLHTTP instance");
-                    return false;
-                }
-                httpRequest.onreadystatechange = alertContents;
-                httpRequest.open("GET", "http://localhost/Users/public/user/ciao");
-                httpRequest.send();
-                }
-
-                function alertContents() {
-                    try {
-                        if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                        if (httpRequest.status === 200) {
-                            alert(httpRequest.responseText);
-                        } else {
-                            alert("There was a problem with the request.");
-                        }
-                        }
-                    } catch (e) {
-                        alert(`Caught Exception: ${e.description}`);
-                    }
-                }
-            })();*/
-            
             let httpRequest;
 
             function removeUser(clicked_button_object) {
@@ -181,7 +147,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 let confirm_text = "Sei sicuro di voler rimuovere l'utente #" + user_id + "?";
                 if(confirm(confirm_text)) {
                     // user confirmed the action
-                    makeRequest(user_id);
+                    requestUserRemoval(user_id);
                 }
             }
             
@@ -190,7 +156,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 return clicked_button_value;
             } 
 
-            function makeRequest(user_id) {
+            function requestUserRemoval(user_id) {
                 httpRequest = new XMLHttpRequest();
 
                 if (!httpRequest) {
@@ -198,22 +164,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     return false;
                 }
                 
-                httpRequest.onreadystatechange = processResponse;
+                httpRequest.onreadystatechange = processResponseToUserRemoval;
                 
                 var current_url = window.location.href;
                 httpRequest.open("GET", current_url + '/remove/' + user_id);
                 httpRequest.send();
             }
 
-            function processResponse() {
+            function processResponseToUserRemoval() {
                 try {
                     if (httpRequest.readyState === XMLHttpRequest.DONE) {
                         if (httpRequest.status === 200) {
-                            // alert(httpRequest.responseText);
                             var deserialized_response = JSON.parse(httpRequest.responseText);
                             var new_user_table = deserialized_response.data.html;
 
-                            $("#page_content").replaceWith('<div id="page_content">' + new_user_table + '</div>'); // replace the old user_table with the updated user-table
+                            $("#page_content").html(new_user_table); // replace the old user_table with the updated user-table
                         } else {
                             alert("There was a problem with the request.");
                         }
@@ -223,58 +188,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 }
             }
 
-            /*
-            function sendRequest(user_id) {
-                var current_url = window.location.href;
-                let httpRequest = new XMLHttpRequest();
-        
+            function addUser() {
+                requestUserRemoval();
+
+
+            }
+
+            function requestUserCreation() {
+                httpRequest = new XMLHttpRequest();
+
                 if (!httpRequest) {
                     alert("Cannot create an XMLHTTP instance");
                     return false;
                 }
-                httpRequest.onreadystatechange = handleServerResponse(httpRequest);
-                httpRequest.open("GET", current_url + '/remove/' + user_id);
-                httpRequest.send();
+
+                httpRequest.onreadystatechange = processResponseToUserCreation;
+                
+                var current_url = window.location.href;
+                httpRequest.open("POST", current_url + '/save');
+                
+                httpRequest.setRequestHeader(
+                    "Content-Type",
+                    "application/json",
+                );
+                httpRequest.send(`userName=${encodeURIComponent(userName)}`);
             }
-        
-            function handleServerResponse(httpRequest) {
+
+            function processResponseToUserCreation() {
+                /*
                 if (httpRequest.readyState === XMLHttpRequest.DONE) {
                     if (httpRequest.status === 200) {
-                            // 
-                            console.log("prova");
-
-                            var deserialized_response = JSON.parse(httpRequest.responseXML);
-                            var page_content = deserialized_response.data.html;
-                            
-                            alert(page_content);
-                            // $("#page_content").append(page_content);
-
+                    const response = JSON.parse(httpRequest.responseText);
+                    alert(response.computedString);
                     } else {
-                        alert("There was a problem with the request.");
+                    alert("There was a problem with the request.");
                     }
-                }
-            } */
-
-             /*
-            $(document).ready(function(){
-                // jQuery code goes here...
-
-                // const obj = JSON.parse();
-
-
-    
-            }); */
+                } */
+            }
       </script>
     </body>
 </html>
 
 <style>
-  .last_update_datetime {
-      text-align: center;
-  }
+    .last_update_datetime {
+        text-align: center;
+    }
 
-  .custom_dropdown {
-      border-width : 0;
-      font-weight: bold;
-  }
+    .custom_dropdown {
+        border-width : 0;
+        font-weight: bold;
+    }
 </style>
