@@ -189,13 +189,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function createUser() {
-                getUserInput();
-                // requestUserCreation();
+                var post_content = getUserInput();
+                requestUserCreation(post_content);
 
 
             }
 
-            function requestUserCreation() {
+            function requestUserCreation(post_content) {
                 httpRequest = new XMLHttpRequest();
 
                 if (!httpRequest) {
@@ -213,15 +213,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     "application/json",
                 );
                 // httpRequest.send(`userName=${encodeURIComponent(userName)}`);
-                httpRequest.send();
-
-
+                httpRequest.send(post_content);
             }
 
             function getUserInput() {
                 var name = $("#input_name").val();
                 var email = $("#input_email").val();
-                var birth_year = $("#birth_year").val();
+                var birth_year = parseInt($("#birth_year").val());
                 var is_female = document.getElementById("is_female_button").checked;
                 var is_male = document.getElementById("is_male_button").checked;
                 var privacy_agreed = document.getElementById("privacy_button").checked;
@@ -229,14 +227,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var post_content = {"name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
 
                 //
-                alert(JSON.stringify(post_content));
+                // alert(JSON.stringify(post_content));
                 return JSON.stringify(post_content);
-                /*
-                var arr = [];
-                arr["name"] = "Stefano";
-                alert(arr["name"]); */
-                //
-                // alert(JSON.stringify(arr));
             }
 
           

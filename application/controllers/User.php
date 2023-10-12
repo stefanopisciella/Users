@@ -67,7 +67,7 @@ class User extends AbastractController{
         // set the content type to json so that the JS does not need to parse it
         // CHECK 
         // header('Content-type: application/json');
-        echo json_encode($response);
+        echo json_encode($response); // converts the array to a JSON
     }
 
     public static function renderLayout() {
@@ -79,6 +79,26 @@ class User extends AbastractController{
     }
 
     public static function save() {
+        if($GLOBALS['f3']->exists('POST.')) {
+            echo $GLOBALS['f3']->get('POST.');
+        }
+
+
+
+         /*
+        $name = $_POST['userName'] ?? 'no name';
+        $computedString = "Hi, " . $name . "!";
+        $array = ['userName' => $name, 'computedString' => $computedString];
+        echo json_encode($array); */
+
+
+        
+        
+        
+        
+        
+        
+        
         /*
         if($GLOBALS['f3']->exists('POST.title') && $GLOBALS['f3']->exists('POST.content')) {
             // client requested with a POST method the UPDATE or the CREATION of the article 
