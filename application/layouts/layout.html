@@ -139,7 +139,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
     </div>
         <script>
-              
+            $(document).ready(function(){
+                
+                $.get( "http://localhost/Users/public/user/remove/10", function(data, status) {
+                    alert("NON HO ERRORE");
+                }).fail(function(obj, status, error) {
+                    alert(error);
+                })
+
+            });
+            
+            
+            function removeUser() {
+
+            }  
+
+           
         </script>
     </body>
 </html>

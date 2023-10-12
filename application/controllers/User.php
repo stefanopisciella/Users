@@ -8,6 +8,7 @@ use function PHPSTORM_META\sql_injection_subst;
 
 class User extends AbastractController{
     public static function remove() {
+        /*
         $user_id = $GLOBALS['f3']->get('PARAMS.id');
 
         if(!parent::is_valid($user_id, "user")) {
@@ -19,7 +20,11 @@ class User extends AbastractController{
         
         ModelUser::remove($user_id);
         
-        User::sendUserTableToClient();
+        User::sendUserTableToClient(); */
+
+        //
+        http_response_code(400); 
+        exit;
     }
 
     public static function respondInvalidId() {
