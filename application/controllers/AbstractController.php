@@ -114,4 +114,23 @@ class AbastractController{
 
         $GLOBALS['f3']->set('next_page_button', $next_page_button);
     }
+
+    // it checks whether the passed id is valid or not
+    public static function is_valid($id, $table_name){
+        if(!is_int($id)) {
+            return false;
+        }
+
+        $query = "SELECT COUNT(ID) as count
+                  FROM {$table_name}
+                  WHERE ID = {$id}";
+
+        $count = $GLOBALS['f3']->get('DB')->exec($query)['count'];
+
+        if($count == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

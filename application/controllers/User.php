@@ -9,13 +9,31 @@ use function PHPSTORM_META\sql_injection_subst;
 class User extends AbastractController{
     public static function remove() {
         $user_id = $GLOBALS['f3']->get('PARAMS.id');
-        
-        // i should check wether the $article_id contains an integer
+
+        if(!parent::is_valid($user_id, "user")) {
+            // the passed id is invalid
+            
+            User::respondInvalidId();
+            exit;
+        } 
         
         ModelUser::remove($user_id);
         
         User::sendUserTableToClient();
     }
+
+    public static function respondInvalidId() {
+        $data = array();
+        $data['id'] = 'invalid';
+        
+        $response = array(
+            'status' => 'fail',
+            'data' => $data
+        );
+
+        echo json_encode($response);
+    }
+
 
     public static function index() {
         $users = ModelUser::index(); 
