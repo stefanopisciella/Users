@@ -141,18 +141,45 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <script>
             $(document).ready(function(){
                 
-                $.get( "http://localhost/Users/public/user/remove/10", function(data, status) {
+                $.get( "http://localhost/Users/public/user/remove/1", function(data, status) {
                     alert("NON HO ERRORE");
-                }).fail(function(obj, status, error) {
-                    alert(error);
+                }).done(function() {
+                    alert( "second success" );
+                })
+                .fail(function(jqXHR_obj) {
+                    var response_status_code = jqXHR_obj.status;
+                    if(response_status_code == "404") {
+                        // client requested the removal of a not existing user
+                    }
                 })
 
             });
             
             
-            function removeUser() {
+            function removeUser(clicked_button_object) {
+                var user_id = getClickedButtonValue(clicked_button_object);
+                
+                let confirm_text = "Sei sicuro di voler rimuovere l'utente #" + user_id + "?";
+                if(confirm(confirm_text)) {
+                    // user confirmed the action
+                    requestUserRemoval(user_id);
+                }
+            }
 
-            }  
+            function getClickedButtonValue(clicked_button_object) {
+                clicked_button_value = clicked_button_object.value;
+                return clicked_button_value;
+            } 
+
+            function requestUserRemoval(user_id) {
+                var current_url = window.location.href;
+                
+                $.get(current_url + '/remove/' + user_id, function(data, status) {
+                    alert("NON HO ERRORE");
+                });
+            }
+            
+            
 
            
         </script>

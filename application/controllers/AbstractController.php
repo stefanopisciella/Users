@@ -117,7 +117,7 @@ class AbastractController{
 
     // it checks whether the passed id is valid or not
     public static function is_valid($id, $table_name){
-        if(!is_int($id)) {
+        if(!is_numeric($id)) {
             return false;
         }
 

@@ -8,25 +8,20 @@ use function PHPSTORM_META\sql_injection_subst;
 
 class User extends AbastractController{
     public static function remove() {
-        /*
         $user_id = $GLOBALS['f3']->get('PARAMS.id');
 
         if(!parent::is_valid($user_id, "user")) {
             // the passed id is invalid
-            
-            User::respondInvalidId();
+            http_response_code(404); 
             exit;
         } 
         
         ModelUser::remove($user_id);
-        
-        User::sendUserTableToClient(); */
 
-        //
-        http_response_code(400); 
-        exit;
+        User::sendUserTableToClient();
     }
 
+    /*
     public static function respondInvalidId() {
         $data = array();
         $data['id'] = 'invalid';
@@ -37,8 +32,7 @@ class User extends AbastractController{
         );
 
         echo json_encode($response);
-    }
-
+    } */
 
     public static function index() {
         $users = ModelUser::index(); 
@@ -90,7 +84,7 @@ class User extends AbastractController{
         // set the content type to json so that the JS does not need to parse it
         // CHECK 
         // header('Content-type: application/json');
-        echo json_encode($response); // converts the array to a JSON
+        echo json_encode($response); // converts the array to a JSON and then the latter will be sent to the client
     }
 
     public static function renderLayout() {
