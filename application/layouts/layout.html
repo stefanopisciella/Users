@@ -139,6 +139,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         </div>
     </div>
         <script>
+            /*
             $(document).ready(function(){
                 
                 $.get( "http://localhost/Users/public/user/remove/1", function(data, status) {
@@ -153,7 +154,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     }
                 })
 
-            });
+            }); */
             
             
             function removeUser(clicked_button_object) {
@@ -175,7 +176,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var current_url = window.location.href;
                 
                 $.get(current_url + '/remove/' + user_id, function(data, status) {
-                    alert("NON HO ERRORE");
+                    // alert("NON HO ERRORE");
                 });
             }
             

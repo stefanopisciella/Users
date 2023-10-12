@@ -10,12 +10,12 @@ class User extends AbastractController{
     public static function remove() {
         $user_id = $GLOBALS['f3']->get('PARAMS.id');
 
-        if(!parent::is_valid($user_id, "user")) {
+        if(!parent::isValid($user_id, "user")) {
             // the passed id is invalid
             http_response_code(404); 
             exit;
-        } 
-        
+        }
+
         ModelUser::remove($user_id);
 
         User::sendUserTableToClient();

@@ -116,16 +116,16 @@ class AbastractController{
     }
 
     // it checks whether the passed id is valid or not
-    public static function is_valid($id, $table_name){
+    public static function isValid($id, $table_name){
         if(!is_numeric($id)) {
             return false;
-        }
+        } 
 
         $query = "SELECT COUNT(ID) as count
                   FROM {$table_name}
                   WHERE ID = {$id}";
 
-        $count = $GLOBALS['f3']->get('DB')->exec($query)['count'];
+        $count = $GLOBALS['f3']->get('DB')->exec($query)[0]['count'];
 
         if($count == 1) {
             return true;
