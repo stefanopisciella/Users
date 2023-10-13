@@ -18,7 +18,7 @@
     <td>
         <div class="btn-group" role="group" aria-label="...">
             <!-- edit user -->
-            <button type="button" class="btn btn-default" value="<?php echo $user_id; ?>">
+            <button type="button" class="btn btn-default" value="<?php echo $user_id; ?>" onclick="updateUser(this)" data-toggle="modal" data-target="#myModal">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             </button>
             <!-- remove user button -->

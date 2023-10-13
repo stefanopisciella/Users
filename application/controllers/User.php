@@ -92,13 +92,17 @@ class User extends AbastractController{
     }
 
     public static function prova() {
-        echo "<label>CIAO</label>";
+        if($GLOBALS['f3']->exists('POST.email')) {
+            echo $GLOBALS['f3']->get('POST.email') ;
+        }
+
     }
 
     public static function save() {
         if($GLOBALS['f3']->exists('POST.')) {
-            echo $GLOBALS['f3']->get('POST.');
+            echo json_encode($GLOBALS['f3']->get('POST.'));
         }
+
 
 
 
@@ -141,6 +145,23 @@ class User extends AbastractController{
             }
         } */
     }
+
+    public static function update() {
+        $user_id = $GLOBALS['f3']->get('PARAMS.id');
+
+        if(!parent::isValid($user_id, "user")) {
+            // the passed id is invalid
+            http_response_code(404); 
+            exit;
+        }
+        
+        $old_user = ModelUser::getById($user_id);
+
+        echo json_encode($old_user);
+    }
+
+    
+
 
 
 }

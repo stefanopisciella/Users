@@ -26,7 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Modifica utente</h4>
+                  <h4 class="modal-title" id="modal_title">Modifica utente</h4>
                 </div>
                 <div class="modal-body">
                   <!-- modal content -->
@@ -40,7 +40,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                       <div class="form-group">
                           <label for="input_email" class="col-sm-2 control-label">Email</label>
                           <div class="col-sm-10">
-                              <input type="email" class="form-control" id="input_email" placeholder="">
+                              <input type="email" class="form-control" id="input_email" placeholder="" value="">
                           </div>
                       </div>
                       <!-- select -->
@@ -175,9 +175,56 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             function requestUserRemoval(user_id) {
                 var current_url = window.location.href;
                 
-                $.get(current_url + '/remove/' + user_id, function(data, status) {
-                    // alert("NON HO ERRORE");
-                });
+                $.get(current_url + '/remove/' + user_id)
+                 .done(function(data) {
+                    var deserialized_response = JSON.parse(data);
+                    var new_user_table = deserialized_response.data.html;
+                    $("#page_content").html(new_user_table); // replace the old user_table with the updated user-table
+                 });
+            }
+
+            function updateUser(clicked_button_object) {
+                var user_id = getClickedButtonValue(clicked_button_object);
+
+                var current_url = window.location.href;
+                var url = current_url + '/update/' + user_id;
+                $.get(url, "json")
+                 .done(function(data) {
+                    var old_user = JSON.parse(data); // "data" contains the rsponded json
+                     
+                    $('#input_name').val(old_user.name); // an alternative to this is statement is: $('#input_name').attr('value', JSON.parse(data).name);
+                    $('#input_email').val(old_user.email);
+                    $('#birth_year').val(old_user.birth_year);
+                    
+                    // set the radio button
+                    if(old_user.is_male == true) {
+                        $('#is_male_button').attr("checked", "checked"); // it adds the "checked" attribute to this radio buton
+                    } else {
+                        $('#is_female_button').attr("checked", "checked"); // it adds the "checked" attribute to this radio buton
+                    }
+
+                    // set the check box
+                    if(old_user.privacy_agreed == true) {
+                        $('#privacy_button').attr("checked", "checked");
+                    }
+
+                    $('#modal_title').text("Modifica utente"); // change modal's header
+                 });
+            }
+
+            function getUserInput() {
+                var name = $("#input_name").val();
+                var email = $("#input_email").val();
+                var birth_year = parseInt($("#birth_year").val());
+                var is_female = document.getElementById("is_female_button").checked;
+                var is_male = document.getElementById("is_male_button").checked;
+                var privacy_agreed = document.getElementById("privacy_button").checked;
+
+                var post_content = {"name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
+
+                //
+                // alert(JSON.stringify(post_content));
+                return post_content;
             }
             
             
