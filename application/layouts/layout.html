@@ -80,12 +80,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           </div>
                       </div>
                   </form>
-                  <div class="alert alert-danger" role="alert">Ricompila il form</div>
+                  <div hidden class="alert alert-danger" role="alert">Ricompila il form</div>
                   
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                    <button type="button" class="btn btn-primary" onclick="createUser();">Salva</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUser()">Salva</button>
                 </div>
               </div>
             </div>
@@ -126,7 +126,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <h1>Utenti</h1>
                 </div>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="createUser()">
                     Nuovo utente
                 </button> 
             </div>
@@ -208,8 +208,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         $('#privacy_button').attr("checked", "checked");
                     }
 
-                    $('#modal_title').text("Modifica utente"); // change modal's header
+                    cheangeModalHeader(true); // it changes the modal header text to "Modifica Utente"
                  });
+            }
+
+            function createUser(clicked_button_object) {
+                resetAllModalInputs();
+                cheangeModalHeader(false); // it changes the modal header text to "Crea Utente"
+            }
+
+            function resetAllModalInputs() {
+                $('#input_name').val(""); // an alternative to this is statement is: $('#input_name').attr('value', JSON.parse(data).name);
+                $('#input_email').val("");
+                $('#birth_year').val("-");
+                
+                // uncheck the radio buttons
+                $('#is_male_button').removeAttr("checked"); 
+                $('#is_female_button').removeAttr("checked");
+
+                // uncheck the check box
+                $('#privacy_button').removeAttr("checked");
+            }
+
+            function cheangeModalHeader(is_updating) {
+                if(is_updating) {
+                    // client is updating a user
+                    $('#modal_title').text("Modifica utente"); // change modal's header
+                } else {
+                    // client is creating a user
+                    $('#modal_title').text("Crea utente"); // change modal's header
+                }
+            }
+
+            function saveUser() {
+
+
             }
 
             function getUserInput() {
@@ -226,10 +259,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 // alert(JSON.stringify(post_content));
                 return post_content;
             }
-            
-            
-
-           
         </script>
     </body>
 </html>

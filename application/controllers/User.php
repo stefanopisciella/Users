@@ -21,19 +21,6 @@ class User extends AbastractController{
         User::sendUserTableToClient();
     }
 
-    /*
-    public static function respondInvalidId() {
-        $data = array();
-        $data['id'] = 'invalid';
-        
-        $response = array(
-            'status' => 'fail',
-            'data' => $data
-        );
-
-        echo json_encode($response);
-    } */
-
     public static function index() {
         $users = ModelUser::index(); 
 
@@ -103,23 +90,8 @@ class User extends AbastractController{
             echo json_encode($GLOBALS['f3']->get('POST.'));
         }
 
+        
 
-
-
-         /*
-        $name = $_POST['userName'] ?? 'no name';
-        $computedString = "Hi, " . $name . "!";
-        $array = ['userName' => $name, 'computedString' => $computedString];
-        echo json_encode($array); */
-
-
-        
-        
-        
-        
-        
-        
-        
         /*
         if($GLOBALS['f3']->exists('POST.title') && $GLOBALS['f3']->exists('POST.content')) {
             // client requested with a POST method the UPDATE or the CREATION of the article 
