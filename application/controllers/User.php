@@ -86,10 +86,17 @@ class User extends AbastractController{
     }
 
     public static function save() {
-        if($GLOBALS['f3']->exists('POST.name')) {
-            $n = $GLOBALS['f3']->get('POST.name') ;
-            echo json_encode(array("name"=>$n));
-        }
+        $data = User::validateUserInput();
+
+        
+        
+        
+        
+        
+        $response = array(
+            'status' => 'fail',
+            'data' => $data
+        );
 
         
 
@@ -117,6 +124,42 @@ class User extends AbastractController{
                 $GLOBALS['f3']->reroute('/article/' . $article_id);
             }
         } */
+    }
+
+    public static function validateUserInput() {
+        $error_messages = array();
+        $validated_inputs = array();
+        
+        if($GLOBALS['f3']->exists('POST.name')) {
+            $name = trim($GLOBALS['f3']->get('POST.name'));
+            if($name == "") {
+                $error_messages['name'] = 'Il campo "nome" non può essere lasciato vuoto';
+                return $error_messages;
+            } else {
+                $validated_inputs['name'] = $name;
+            }
+        }
+
+        if($GLOBALS['f3']->exists('POST.email')) {
+            $email = trim($GLOBALS['f3']->get('POST.email'));
+            if($email == "") {
+                $error_messages['email'] = 'Il campo "email" non può essere lasciato vuoto';
+                return $error_messages;
+            } else {
+                if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    // the submitted email is valid
+                    $validated_inputs['email'] = $email;
+                } else {
+                    $error_messages['email'] = "L'email inserita non è valida";
+                    return $error_messages;
+                }
+            }
+        }
+
+
+
+
+        return $validated_inputs;
     }
 
     public static function update() {

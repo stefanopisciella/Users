@@ -233,15 +233,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
-                // var json_to_send = getUserInput();
-                var json_to_send = {"name" : "bau"};
+                var json_to_send = getUserInput();
+                // var json_to_send = {"name" : "bau"};
                 
                 var current_url = window.location.href;
                 var url = current_url + '/save/';
                 $.post(url, json_to_send, "json")
                  .done(function(data) {
                     var a = JSON.parse(data); // "data" contains the rsponded json
-                    alert(a.name);
+                    alert(JSON.stringify(a));
                     
                  });
 
@@ -260,8 +260,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 //
                 // alert(JSON.stringify(post_content));
-                // return post_content;
-                return JSON.stringify(post_content);
+                return post_content;
+                // return JSON.stringify(post_content);
             }
         </script>
     </body>
