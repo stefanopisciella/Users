@@ -17,6 +17,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.11/URI.min.js"></script>
+
+        <!-- library for showing loading spinner inside the save button -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="container">
@@ -85,7 +88,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                    <button type="button" class="btn btn-primary" onclick="saveUser()">Salva</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUser()">
+                        Salva
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                    </button>
                 </div>
               </div>
             </div>
@@ -135,27 +141,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <!-- we inject the page_content here using Jquery (after the removal, creation and update of a user) or F3 when the client requests the index page -->
                 <?php echo $page_content; ?>
             </div>
-
         </div>
     </div>
         <script>
             /*
             $(document).ready(function(){
                 
-                $.get( "http://localhost/Users/public/user/remove/1", function(data, status) {
-                    alert("NON HO ERRORE");
-                }).done(function() {
-                    alert( "second success" );
-                })
-                .fail(function(jqXHR_obj) {
-                    var response_status_code = jqXHR_obj.status;
-                    if(response_status_code == "404") {
-                        // client requested the removal of a not existing user
-                    }
-                })
-
             }); */
-            
             
             function removeUser(clicked_button_object) {
                 var user_id = getClickedButtonValue(clicked_button_object);
@@ -212,7 +204,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                  });
             }
 
-            function createUser(clicked_button_object) {
+            function createUser() {
                 resetAllModalInputs();
                 cheangeModalHeader(false); // it changes the modal header text to "Crea Utente"
             }
@@ -241,6 +233,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
+                // var json_to_send = getUserInput();
+                var json_to_send = {"name" : "bau"};
+                
+                var current_url = window.location.href;
+                var url = current_url + '/save/';
+                $.post(url, json_to_send, "json")
+                 .done(function(data) {
+                    var a = JSON.parse(data); // "data" contains the rsponded json
+                    alert(a.name);
+                    
+                 });
 
 
             }
@@ -257,7 +260,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 //
                 // alert(JSON.stringify(post_content));
-                return post_content;
+                // return post_content;
+                return JSON.stringify(post_content);
             }
         </script>
     </body>

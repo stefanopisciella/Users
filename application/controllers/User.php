@@ -86,8 +86,9 @@ class User extends AbastractController{
     }
 
     public static function save() {
-        if($GLOBALS['f3']->exists('POST.')) {
-            echo json_encode($GLOBALS['f3']->get('POST.'));
+        if($GLOBALS['f3']->exists('POST.name')) {
+            $n = $GLOBALS['f3']->get('POST.name') ;
+            echo json_encode(array("name"=>$n));
         }
 
         

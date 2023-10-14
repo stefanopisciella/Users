@@ -27,7 +27,7 @@ $f3->route('GET /user/update/@id','controllers\User->update'); // for showing th
 
 $f3->route('POST /user/save/@id','controllers\user->save'); // for UPDATING a user
 // $f3->route('GET /user/view','controllers\user->view'); // for showing the CREATE user form
-$f3->route('POST /user/save','controllers\user->save'); // for CREATING a new user
+$f3->route('POST /user/save','controllers\user->save'); // for CREATING or UPDATING a new user
 $f3->route('GET /user/remove/@id','controllers\User->remove');
 $f3->route('GET /user','controllers\User->index');
 
