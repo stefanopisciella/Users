@@ -251,7 +251,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             function getUserInput() {
                 var name = $("#input_name").val();
                 var email = $("#input_email").val();
-                var birth_year = parseInt($("#birth_year").val());
+                var birth_year = $("#birth_year").val() == '-'? '-' : parseInt($("#birth_year").val()); // so that this variable could contain "-" or a number parsed as an integer representing a year
                 var is_female = document.getElementById("is_female_button").checked;
                 var is_male = document.getElementById("is_male_button").checked;
                 var privacy_agreed = document.getElementById("privacy_button").checked;

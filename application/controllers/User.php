@@ -98,6 +98,8 @@ class User extends AbastractController{
             'data' => $data
         );
 
+        echo json_encode($response);
+
         
 
         /*
@@ -156,8 +158,16 @@ class User extends AbastractController{
             }
         }
 
-
-
+        // CHECK
+        if($GLOBALS['f3']->exists('POST.birth_year')) {
+            $birth_year = $GLOBALS['f3']->get('POST.birth_year');
+            if($birth_year == '-') {
+                $error_messages['birth_year'] = "Non è stato selezionato l'anno di nascita";
+                return $error_messages;
+            } else {
+                $validated_inputs['birth_year'] = intval($birth_year);
+            }
+        }
 
         return $validated_inputs;
     }
