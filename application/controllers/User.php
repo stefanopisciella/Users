@@ -83,12 +83,13 @@ class User extends AbastractController{
 
         if($d['status'] == "success") {
             $user = $d;
+            
             ModelUser::save($user);
             User::respondUserTableHtml(); //
         } else if ($d['status'] == "fail") {
             $response = $d;
             echo json_encode($response);
-        }
+        } 
     }
 
     public static function validateUserInput() {

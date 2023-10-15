@@ -238,7 +238,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
-                var user_id = $('#input_user_id').val();
+                var user_id = parseInt($('#input_user_id').val());
 
                 //
                 // alert(user_id);
@@ -262,9 +262,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         alert("ERROR");
                     }
                  })
-                 .fail(function() {
+                 .fail(function(jqXHR, textStatus, errorThrown) {
                     // alert("ERRONEO");
-                    alert();
+                    alert(errorThrown);
 
                  });
             }
@@ -273,7 +273,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var current_url = window.location.href;
                 var url = current_url + '/save/';
                 
-                if(user_id != null) {
+                if(typeof(user_id) == undefined) { // the condition "$user_id == null" gived problems
                     // client has to update the user
                     url += user_id;
                 } 
