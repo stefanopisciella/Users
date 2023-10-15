@@ -87,7 +87,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           </div>
                         </div>
                     </div>               
-                      <!-- END select -->
+                    <!-- END select -->
+                    
                       <!-- radios -->
                       <div class="form-group">
                           <label class="col-sm-2 control-label">Sesso</label>
@@ -117,9 +118,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                    <button type="button" class="btn btn-primary" onclick="saveUser()">
+                    <button id="save_button" type="button" class="btn btn-primary" onclick="saveUser()">
                         Salva
-                        <i class="fa fa-circle-o-notch fa-spin"></i>
                     </button>
                 </div>
               </div>
@@ -264,6 +264,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
+                $("#save_button").append('<i id="loading_spinner" class="fa fa-circle-o-notch fa-spin"></i>'); // show the loading spinner inside the save_button
+                
                 var user_id = $('#input_user_id').val();
                 if(user_id != "null") { 
                     user_id = parseInt(user_id);
@@ -287,8 +289,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         // client didn't fill properly the form => "reponded_json" contains the error messages
 
                         
-                        alert("ERROR");
-                    } 
+                        // alert("ERROR");
+                    }
+
+                    // $('#loading_spinner').remove(); // hide the loading spinner
+                    $('#save_button').attr("disabled", "disabled");
                  })
                  .fail(function(jqXHR, textStatus, errorThrown) {
                     // alert("ERRONEO");
