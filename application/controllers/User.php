@@ -86,9 +86,18 @@ class User extends AbastractController{
     }
 
     public static function save() {
-        $response = User::validateUserInput();
+        $d = User::validateUserInput();
 
+        if($d['status'] == "success") {
+            $user = $d;
+        } else if ($d['status'] == "fail") {
+            $response = $d;
+        }
+        
+        
         echo json_encode($response);
+
+
 
         
 
@@ -119,7 +128,7 @@ class User extends AbastractController{
     }
 
     public static function validateUserInput() {
-        $success_response = User::getEmptySuccessResponse();
+        $user = array();
         $fail_response = User::getEmptyFailResponse();
         
         if($GLOBALS['f3']->exists('POST.name')) {
@@ -128,7 +137,7 @@ class User extends AbastractController{
                 $fail_response['data']['name'] = 'Il campo "nome" non può essere lasciato vuoto';
                 return $fail_response;
             } else {
-                $success_response['data']['name'] = $name;
+                $user['name'] = $name;
             }
         }
 
@@ -140,7 +149,7 @@ class User extends AbastractController{
             } else {
                 if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     // the submitted email is valid
-                    $success_response['data']['email'] = $email;
+                    $user['email'] = $email;
                 } else {
                     $fail_response['data']['email'] = "L'email inserita non è valida";
                     return $fail_response;
@@ -154,11 +163,28 @@ class User extends AbastractController{
                 $fail_response['data']['birth_year'] = "Non è stato selezionato l'anno di nascita";
                 return $fail_response;
             } else {
-                $success_response['data']['birth_year'] = intval($birth_year);
+                $user['birth_year'] = intval($birth_year);
             }
         }
 
-        return $success_response;
+        if($GLOBALS['f3']->exists('POST.is_male') && $GLOBALS['f3']->exists('POST.is_female') ) {
+            $is_male = $GLOBALS['f3']->exists('POST.is_male');
+            $is_female = $GLOBALS['f3']->exists('POST.is_female');
+            
+            if($is_male == false && $is_female == false) {
+                // CASE1: user didn't select his/her sex
+                $user['is_male'] = null;
+            }
+
+            // CASE2: user select his/her sex
+            $user['is_male'] = $is_male;
+        }
+
+        if($GLOBALS['f3']->exists('POST.privacy_agreed')) {
+            $user['privacy_agreed'] = $GLOBALS['f3']->get('POST.privacy_agreed');
+        }
+
+        return $user; // this array contains the parameters to be use for the insert query
     }
 
     public static function update() {

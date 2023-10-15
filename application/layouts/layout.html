@@ -240,8 +240,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var url = current_url + '/save/';
                 $.post(url, json_to_send, "json")
                  .done(function(data) {
-                    var a = JSON.parse(data); // "data" contains the rsponded json
-                    alert(JSON.stringify(a));
+                    var responded_json = JSON.parse(data);
+
+                    if(responded_json.status == "success") {
+                        // client filled properly the form => "reponded_json" contains the html of the updated user_table
+                        
+                        
+                        alert("NO ERROR");
+                    } else if (responded_json.status == "fail") {
+                        // client didn't fill properly the form => "reponded_json" contains the error messages
+
+                        
+                        alert("ERROR");
+                    }
+                    
                     
                  });
 
@@ -258,10 +270,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 var post_content = {"name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
 
-                //
-                // alert(JSON.stringify(post_content));
                 return post_content;
-                // return JSON.stringify(post_content);
             }
         </script>
     </body>
