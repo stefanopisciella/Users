@@ -80,7 +80,7 @@ class User extends AbastractController{
         $ar = array();
         $ar["mex"] = "CI ARRIVO";
         echo json_encode($ar); */
-        
+        /*
         $d = User::validateUserInput();
 
         if($d['status'] == "success") {
@@ -91,7 +91,12 @@ class User extends AbastractController{
         } else if ($d['status'] == "fail") {
             $response = $d;
             echo json_encode($response);
-        } 
+        }  */
+
+        $d = User::validateUserInput();
+        $user = $d;
+        ModelUser::save($user);
+        User::respondUserTableHtml();
     }
 
     public static function validateUserInput() {
