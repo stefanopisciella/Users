@@ -34,10 +34,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="modal-body">
                   <!-- modal content -->
                   <form class="form-horizontal">
-                      <div class="form-group">
-                          <label for="input_name" class="col-sm-2 control-label">Nome</label>
-                          <div class="col-sm-10">
-                              <input type="text" class="form-control" id="input_name" placeholder="" value="">
+                      <div class="form-group has-error">
+                          <div class="row">
+                            <div class="col-sm-10 col-sm-offset-2">
+                                <label for="input_name" class="control-label">ERRORE NOME</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-1 col-sm-offset-1">
+                                <label for="input_name" class="control-label">Nome</label>
+                            </div>
+                            <div class="col-sm-9">  <!-- "col-sm-9" and not "col-sm-10" for leaving a blank column to the right of the input_name -->
+                                <input type="text" class="form-control" id="input_name" placeholder="" value="">
+                            </div>
                           </div>
                       </div>
                       <div class="form-group">
@@ -250,7 +259,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 $.post(url, post_content, "json")
                  .done(function(data) {
                     var responded_json = JSON.parse(data);
-
+                    
                     if(responded_json.status == "success") {
                         // client filled properly the form => "reponded_json" contains the html of the updated user_table
                         
@@ -261,7 +270,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                         
                         alert("ERROR");
-                    }
+                    } 
                  })
                  .fail(function(jqXHR, textStatus, errorThrown) {
                     // alert("ERRONEO");

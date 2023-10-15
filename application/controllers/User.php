@@ -68,9 +68,6 @@ class User extends AbastractController{
             'data' => $data
         );
 
-        // set the content type to json so that the JS does not need to parse it
-        // CHECK 
-        // header('Content-type: application/json');
         echo json_encode($response); // converts the array to a JSON and then the latter will be sent to the client
     }
 
@@ -79,6 +76,11 @@ class User extends AbastractController{
     }
 
     public static function save() {
+        /*
+        $ar = array();
+        $ar["mex"] = "CI ARRIVO";
+        echo json_encode($ar); */
+        
         $d = User::validateUserInput();
 
         if($d['status'] == "success") {
