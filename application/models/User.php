@@ -26,4 +26,18 @@ class User {
 
         return $user[0]; // !!! NOTE [0]
     }
+
+    public static function save($user) {
+        if($user['user_id'] == null) {
+            // CREATION of the user
+            $GLOBALS['f3']->get('DB')->exec("INSERT INTO user (name, email, birth_year, is_male, privacy_agreed) VALUES ({$user['name']}, {$user['email']}, {$user['birth_year']}, {$user['is_male']}, {$user['privacy_agreed']})");
+        } else {
+            // UPDATE of the user
+            $GLOBALS['f3']->get('DB')->exec(
+                "UPDATE user
+                 SET name = {$user['name']}, email = {$user['email']}, birth_year = {$user['birth_year']}, is_male = {$user['is_male']}, privacy_agreed = {$user['privacy_agreed']}
+                 WHERE ID = {$user['user_id']};"
+            );
+        }
+    }
 }

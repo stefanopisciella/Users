@@ -18,7 +18,7 @@ class User extends AbastractController{
 
         ModelUser::remove($user_id);
 
-        User::sendUserTableToClient();
+        User::respondUserTableHtml();
     }
 
     public static function index() {
@@ -56,7 +56,7 @@ class User extends AbastractController{
         return $user_table;
     }
 
-    public static function sendUserTableToClient() {
+    public static function respondUserTableHtml() {
         $users = ModelUser::index(); 
         $user_table = User::makeUserTable($users);
 
@@ -78,52 +78,17 @@ class User extends AbastractController{
         echo parent::render('application/layouts/layout.html'); // inject user_table within the user.html page */
     }
 
-    public static function prova() {
-        if($GLOBALS['f3']->exists('POST.email')) {
-            echo $GLOBALS['f3']->get('POST.email') ;
-        }
-
-    }
-
     public static function save() {
         $d = User::validateUserInput();
 
         if($d['status'] == "success") {
             $user = $d;
+            ModelUser::save($user);
+            User::respondUserTableHtml(); //
         } else if ($d['status'] == "fail") {
             $response = $d;
+            echo json_encode($response);
         }
-        
-        echo json_encode($response);
-
-
-
-        
-
-        /*
-        if($GLOBALS['f3']->exists('POST.title') && $GLOBALS['f3']->exists('POST.content')) {
-            // client requested with a POST method the UPDATE or the CREATION of the article 
-            $article_title = $GLOBALS['f3']->get('POST.title');
-            $article_content = $GLOBALS['f3']->get('POST.content');
-
-            $article = array(
-                1 => $article_title,
-                2 => $article_content
-            );
-
-            $article_id = null;
-            $article_id = $GLOBALS['f3']->get('PARAMS.id');
-            
-            ModelArticle::save($article, $article_id); 
-            
-            if($article_id == null) {
-                // client requested with a POST method the CREATION of the article 
-                $GLOBALS['f3']->reroute('/article?page=1&order=1&dir=1');
-            } else {
-                // client requested with a POST method the UPDATE of the article 
-                $GLOBALS['f3']->reroute('/article/' . $article_id);
-            }
-        } */
     }
 
     public static function validateUserInput() {
@@ -183,6 +148,10 @@ class User extends AbastractController{
             $user['privacy_agreed'] = $GLOBALS['f3']->get('POST.privacy_agreed');
         }
 
+        if($GLOBALS['f3']->exists('POST.user_id')) {
+            $user['user_id'] = $GLOBALS['f3']->get('POST.user_id');
+        }
+
         return $user; // this array contains the parameters to be use for the insert query
     }
 
@@ -220,5 +189,12 @@ class User extends AbastractController{
         );
 
         return $response;
+    }
+
+    public static function prova() {
+        if($GLOBALS['f3']->exists('POST.email')) {
+            echo $GLOBALS['f3']->get('POST.email') ;
+        }
+
     }
 }

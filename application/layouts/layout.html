@@ -240,6 +240,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             function saveUser() {
                 var user_id = $('#input_user_id').val();
 
+                //
+                // alert(user_id);
+
                 var url = generateUrl(user_id);
                 var post_content = generatePostContent(user_id);
                 
@@ -258,8 +261,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         
                         alert("ERROR");
                     }
-                    
-                    
+                 })
+                 .fail(function() {
+                    // alert("ERRONEO");
+                    alert();
+
                  });
             }
 
