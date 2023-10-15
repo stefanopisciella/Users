@@ -46,6 +46,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                               <input type="email" class="form-control" id="input_email" placeholder="" value="">
                           </div>
                       </div>
+                      <!-- we need to store the user_id inside this hidden input when the user need to update a user  -->
+                      <input hidden type="number" id="input_user_id" placeholder="" value="">
                       <!-- select -->
                       <div class="form-group">
                           <label for="birth_year" class="col-sm-2 control-label">Anno nascita</label>
@@ -201,6 +203,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     }
 
                     cheangeModalHeader(true); // it changes the modal header text to "Modifica Utente"
+
+                    var user_id = $('#update_user_button').val(); ;
+                    $('#input_user_id').val(user_id); // we need to store the user_id if we want to save the updated user
                  });
             }
 
@@ -233,12 +238,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
-                var json_to_send = getUserInput();
-                // var json_to_send = {"name" : "bau"};
-                
                 var current_url = window.location.href;
                 var url = current_url + '/save/';
-                $.post(url, json_to_send, "json")
+
+                
+                var post_content = getUserInput();
+
+                
+                $.post(url, post_content, "json")
                  .done(function(data) {
                     var responded_json = JSON.parse(data);
 
@@ -271,6 +278,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var post_content = {"name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
 
                 return post_content;
+            }
+
+            function extractEventualUserIdFromURL(current_url) {
+                var url_segments = current_url.split('/');
+                var user_id = url_segments.at(-1);
+                
+                return user_id;
             }
         </script>
     </body>
