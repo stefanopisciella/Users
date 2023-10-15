@@ -47,7 +47,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           </div>
                       </div>
                       <!-- we need to store the user_id inside this hidden input when the user need to update a user  -->
-                      <input hidden type="number" id="input_user_id" placeholder="" value="">
+                      <input hidden type="text" id="input_user_id" placeholder="" value="null">
                       <!-- select -->
                       <div class="form-group">
                           <label for="birth_year" class="col-sm-2 control-label">Anno nascita</label>
@@ -238,12 +238,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
-                var current_url = window.location.href;
-                var url = current_url + '/save/';
+                var user_id = $('#input_user_id').val();
 
-                
-                var post_content = getUserInput();
-
+                var url = generateUrl(user_id);
+                var post_content = generatePostContent(user_id);
                 
                 $.post(url, post_content, "json")
                  .done(function(data) {
@@ -263,11 +261,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     
                     
                  });
-
-
             }
 
-            function getUserInput() {
+            function generateUrl(user_id) {
+                var current_url = window.location.href;
+                var url = current_url + '/save/';
+                
+                if(user_id != null) {
+                    // client has to update the user
+                    url += user_id;
+                } 
+
+                return url;
+            }
+
+            function generatePostContent(user_id) {
                 var name = $("#input_name").val();
                 var email = $("#input_email").val();
                 var birth_year = $("#birth_year").val() == '-'? '-' : parseInt($("#birth_year").val()); // so that this variable could contain "-" or a number parsed as an integer representing a year
@@ -275,7 +283,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var is_male = document.getElementById("is_male_button").checked;
                 var privacy_agreed = document.getElementById("privacy_button").checked;
 
-                var post_content = {"name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
+                var post_content = {"user_id" : user_id, "name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
 
                 return post_content;
             }
@@ -286,6 +294,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 
                 return user_id;
             }
+
+            /*
+            function userHasToBeUpdated() {
+                var user_id = $('#input_user_id').val();
+                if(user_id == null) {
+                    return false;
+                } else {
+                    // client has to update the user
+                    return true;
+                }
+            } */
         </script>
     </body>
 </html>

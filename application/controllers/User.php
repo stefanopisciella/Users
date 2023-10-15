@@ -94,7 +94,6 @@ class User extends AbastractController{
             $response = $d;
         }
         
-        
         echo json_encode($response);
 
 
