@@ -34,10 +34,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="modal-body">
                   <!-- modal content -->
                   <form class="form-horizontal">
-                      <div class="form-group has-error">
+                      <div id="highlight_name_error" class="form-group">
                           <div class="row">
                             <div class="col-sm-10 col-sm-offset-2">
-                                <label for="input_name" class="control-label">ERRORE NOME</label>
+                                <label id="error_name_label" for="input_name" class="control-label"></label>
                             </div>
                           </div>
                           <div class="row">
@@ -45,14 +45,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <label for="input_name" class="control-label">Nome</label>
                             </div>
                             <div class="col-sm-9">  <!-- "col-sm-9" and not "col-sm-10" for leaving a blank column to the right of the input_name -->
-                                <input type="text" class="form-control" id="input_name" placeholder="" value="">
+                                <input type="text" class="form-control" id="input_name" placeholder="" value="" onclick="reactivateSaveButton();">
                             </div>
                           </div>
                       </div>
-                      <div class="form-group has-error">
+                      <div id="highlight_email_error" class="form-group">
                         <div class="row">
                           <div class="col-sm-10 col-sm-offset-2">
-                              <label for="input_email" class="control-label">ERRORE EMAIL</label>
+                              <label id="error_email_label" for="input_email" class="control-label"></label>
                           </div>
                         </div>
                         <div class="row">
@@ -60,17 +60,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                               <label for="input_email" class="control-label">Email</label>
                           </div>
                           <div class="col-sm-9">  <!-- "col-sm-9" and not "col-sm-10" for leaving a blank column to the right of the input_name -->
-                              <input type="email" class="form-control" id="input_email" placeholder="" value="">
+                              <input type="email" class="form-control" id="input_email" placeholder="" value="" onclick="reactivateSaveButton();">
                           </div>
                         </div>
                     </div>
                       <!-- we need to store the user_id inside this hidden input when the user need to update a user  -->
                       <input hidden type="text" id="input_user_id" placeholder="" value="null">
                       <!-- select -->
-                      <div class="form-group has-error">
+                      <div id="highlight_birth_year_error" class="form-group">
                         <div class="row">
                           <div class="col-sm-10 col-sm-offset-2">
-                              <label for="birth_year" class="control-label">ERRORE ANNO NASCITA</label>
+                              <label id="error_birth_year_label" for="birth_year" class="control-label"></label>
                           </div>
                         </div>
                         <div class="row">
@@ -78,7 +78,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                               <label for="birth_year" class="control-label">Anno nascita</label>
                           </div>
                           <div class="col-sm-3">
-                            <select id="birth_year" class="form-control">
+                            <select id="birth_year" class="form-control" onclick="reactivateSaveButton();">
                                 <option>-</option> <!-- default option -->
                                 <?php for($i=2005;$i>=1930;$i--): ?> 
                                 <?php   echo '<option>' . $i . '</option>'; ?>
@@ -117,7 +117,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                   
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearErrorLabelsContent();">Chiudi</button> <!-- we use clearErrorLabelsContent() 
+                    so that the client, once he reopens the modal, he will not see the error messages relative to the previous submit  -->
                     <button id="save_button" type="button" class="btn btn-primary" onclick="saveUser()">
                         Salva
                     </button>
@@ -264,7 +265,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
-                $("#save_button").append('<i id="loading_spinner" class="fa fa-circle-o-notch fa-spin"></i>'); // show the loading spinner inside the save_button
+                resetTheForm(); // so that the client will not see graphic elements relative to the previous submit
                 
                 var user_id = $('#input_user_id').val();
                 if(user_id != "null") { 
@@ -287,13 +288,34 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         alert("NO ERROR");
                     } else if (responded_json.status == "fail") {
                         // client didn't fill properly the form => "reponded_json" contains the error messages
-
                         
-                        // alert("ERROR");
+                        var error_name_massage = responded_json.data.name;
+                        if(error_name_massage != null) {
+                            // there is an error in the "name" input
+                            $("#highlight_name_error").attr("class", "form-group has-error");
+                            $('#error_name_label').text(error_name_massage);
+                        }
+
+                        var error_email_massage = responded_json.data.email;
+                        if(error_email_massage != null) {
+                            // there is an error in the "email" input
+                            $("#highlight_email_error").attr("class", "form-group has-error");
+                            $('#error_email_label').text(error_email_massage);
+                        }
+
+                        var error_birth_year_massage = responded_json.data.birth_year;
+                        if(error_birth_year_massage != null) {
+                            // there is an error in the "birth_year" select
+                            $("#highlight_birth_year_error").attr("class", "form-group has-error");
+                            $('#error_birth_year_label').text(error_birth_year_massage);
+                        }
+                        
                     }
 
-                    // $('#loading_spinner').remove(); // hide the loading spinner
-                    $('#save_button').attr("disabled", "disabled");
+                    setTimeout(function() {
+                        $('#loading_spinner').remove(); // hide the loading spinner
+                        $('#save_button').attr("disabled", "disabled");
+                    }, 2000);
                  })
                  .fail(function(jqXHR, textStatus, errorThrown) {
                     // alert("ERRONEO");
@@ -325,6 +347,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var post_content = {"user_id" : user_id, "name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
 
                 return post_content;
+            }
+
+            function reactivateSaveButton() {
+                if(document.getElementById("save_button").hasAttribute("disabled")) {
+                    $("#save_button").removeAttr("disabled");
+                }
+            }
+
+            function resetTheForm() {
+                clearErrorLabelsContent();
+                removeErrorHighLighting();
+                $("#save_button").append('<i id="loading_spinner" class="fa fa-circle-o-notch fa-spin"></i>'); // show the loading spinner inside the save_button
+            }
+
+            function clearErrorLabelsContent() {
+                $('#error_name_label').text("");
+                $('#error_email_label').text("");
+                $('#error_birth_year_label').text("");
+            }
+
+            function removeErrorHighLighting() {
+                $("#highlight_name_error").attr("class", "form-group");
+                $("#highlight_email_error").attr("class", "form-group");
+                $("#highlight_birth_year_error").attr("class", "form-group");
             }
 
 
