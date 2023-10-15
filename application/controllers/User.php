@@ -86,17 +86,7 @@ class User extends AbastractController{
     }
 
     public static function save() {
-        $data = User::validateUserInput();
-
-        
-        
-        
-        
-        
-        $response = array(
-            'status' => 'fail',
-            'data' => $data
-        );
+        $response = User::validateUserInput();
 
         echo json_encode($response);
 
@@ -129,47 +119,46 @@ class User extends AbastractController{
     }
 
     public static function validateUserInput() {
-        $error_messages = array();
-        $validated_inputs = array();
+        $success_response = User::getEmptySuccessResponse();
+        $fail_response = User::getEmptyFailResponse();
         
         if($GLOBALS['f3']->exists('POST.name')) {
             $name = trim($GLOBALS['f3']->get('POST.name'));
             if($name == "") {
-                $error_messages['name'] = 'Il campo "nome" non può essere lasciato vuoto';
-                return $error_messages;
+                $fail_response['data']['name'] = 'Il campo "nome" non può essere lasciato vuoto';
+                return $fail_response;
             } else {
-                $validated_inputs['name'] = $name;
+                $success_response['data']['name'] = $name;
             }
         }
 
         if($GLOBALS['f3']->exists('POST.email')) {
             $email = trim($GLOBALS['f3']->get('POST.email'));
             if($email == "") {
-                $error_messages['email'] = 'Il campo "email" non può essere lasciato vuoto';
-                return $error_messages;
+                $fail_response['data']['email'] = 'Il campo "email" non può essere lasciato vuoto';
+                return $fail_response;
             } else {
                 if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     // the submitted email is valid
-                    $validated_inputs['email'] = $email;
+                    $success_response['data']['email'] = $email;
                 } else {
-                    $error_messages['email'] = "L'email inserita non è valida";
-                    return $error_messages;
+                    $fail_response['data']['email'] = "L'email inserita non è valida";
+                    return $fail_response;
                 }
             }
         }
 
-        // CHECK
         if($GLOBALS['f3']->exists('POST.birth_year')) {
             $birth_year = $GLOBALS['f3']->get('POST.birth_year');
             if($birth_year == '-') {
-                $error_messages['birth_year'] = "Non è stato selezionato l'anno di nascita";
-                return $error_messages;
+                $fail_response['data']['birth_year'] = "Non è stato selezionato l'anno di nascita";
+                return $fail_response;
             } else {
-                $validated_inputs['birth_year'] = intval($birth_year);
+                $success_response['data']['birth_year'] = intval($birth_year);
             }
         }
 
-        return $validated_inputs;
+        return $success_response;
     }
 
     public static function update() {
@@ -186,8 +175,25 @@ class User extends AbastractController{
         echo json_encode($old_user);
     }
 
-    
+    public static function getEmptySuccessResponse() {
+        $data = array();
+        
+        $response = array(
+            "status" => "success",
+            "data" => $data
+        );
 
+        return $response;
+    }
 
+    public static function getEmptyFailResponse() {
+        $data = array();
+        
+        $response = array(
+            "status" => "fail",
+            "data" => $data
+        );
 
+        return $response;
+    }
 }
