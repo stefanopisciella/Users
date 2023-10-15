@@ -85,7 +85,7 @@ class User extends AbastractController{
             $user = $d;
             
             ModelUser::save($user);
-            User::respondUserTableHtml(); //
+            User::respondUserTableHtml();
         } else if ($d['status'] == "fail") {
             $response = $d;
             echo json_encode($response);
@@ -147,7 +147,7 @@ class User extends AbastractController{
 
         if($GLOBALS['f3']->exists('POST.privacy_agreed')) {
             $user['privacy_agreed'] = $GLOBALS['f3']->get('POST.privacy_agreed');
-        }
+        } 
 
         if($GLOBALS['f3']->exists('POST.user_id')) {
             $user['user_id'] = $GLOBALS['f3']->get('POST.user_id');

@@ -204,7 +204,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                     cheangeModalHeader(true); // it changes the modal header text to "Modifica Utente"
 
-                    var user_id = $('#update_user_button').val(); ;
                     $('#input_user_id').val(user_id); // we need to store the user_id if we want to save the updated user
                  });
             }
@@ -238,9 +237,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             function saveUser() {
-                var user_id = parseInt($('#input_user_id').val());
+                var user_id = $('#input_user_id').val();
+                if(user_id != "null") { 
+                    user_id = parseInt(user_id);
+                }
 
-                //
                 // alert(user_id);
 
                 var url = generateUrl(user_id);
@@ -273,7 +274,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var current_url = window.location.href;
                 var url = current_url + '/save/';
                 
-                if(typeof(user_id) == undefined) { // the condition "$user_id == null" gived problems
+                if(user_id != "null") {
                     // client has to update the user
                     url += user_id;
                 } 
@@ -294,12 +295,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 return post_content;
             }
 
-            function extractEventualUserIdFromURL(current_url) {
-                var url_segments = current_url.split('/');
-                var user_id = url_segments.at(-1);
-                
-                return user_id;
-            }
 
             /*
             function userHasToBeUpdated() {
