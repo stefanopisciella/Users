@@ -177,3 +177,16 @@
 [16-Oct-2023 19:02:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
 [16-Oct-2023 19:02:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
 [16-Oct-2023 19:02:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 19:25:11 Europe/Berlin] Undefined array key "name"
+[16-Oct-2023 19:25:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:46] 
+[16-Oct-2023 19:25:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:46] Base->{closure}()
+[16-Oct-2023 19:25:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 19:25:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 19:25:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 19:32:32 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 19:32:32 Europe/Berlin] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Stefan' in 'field list' [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:36] DB\SQL->exec()
+[16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
