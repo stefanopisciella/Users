@@ -29,9 +29,21 @@ class User {
 
     public static function save($user) {
         // CHECK
-        if($user['user_id'] == null) {
+    
+        $ar = array(
+            0 => $user['user_id'],
+            1 => $user['name'],
+            2 => $user['email'],
+            3 => $user['birth_year'],
+            4 => $user['is_male'],
+            5 => $user['privacy_agreed']
+        ); 
+        
+        
+        
+        if($user['user_id'] == "not_set") {
             // CREATION of the user
-            $GLOBALS['f3']->get('DB')->exec("INSERT INTO user (name, email, birth_year, is_male, privacy_agreed) VALUES ({$user['name']}, {$user['email']}, {$user['birth_year']}, {$user['is_male']}, {$user['privacy_agreed']});");
+            $GLOBALS['f3']->get('DB')->exec("INSERT INTO `user`(`name`, `email`, `birth_year`, `is_male`, `privacy_agreed`) VALUES ('{$ar[1]}','{$ar[2]}', '{$ar[3]}', '{$ar[4]}', '{$ar[5]}');");
         } else {
             // UPDATE of the user
             $GLOBALS['f3']->get('DB')->exec(
