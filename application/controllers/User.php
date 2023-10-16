@@ -76,11 +76,6 @@ class User extends AbastractController{
     }
 
     public static function save() {
-        /*
-        $ar = array();
-        $ar["mex"] = "CI ARRIVO";
-        echo json_encode($ar); */
-        
         $d = User::validateUserInput();
 
         if(array_key_exists("status", $d) == true) {
@@ -155,6 +150,16 @@ class User extends AbastractController{
         }
 
         return $user; // this array contains the parameters to be use for the insert query
+    }
+
+    public static function getUserInput() {
+        $user = array();
+
+        if($GLOBALS['f3']->exists('POST.name')) {
+            $user['name'] = $GLOBALS['f3']->get('POST.email');
+        }
+
+
     }
 
     public static function update() {
