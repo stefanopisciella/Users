@@ -76,27 +76,34 @@ class User extends AbastractController{
     }
 
     public static function save() {
-        $d = User::validateUserInput();
+        $array = User::validateUserInput(); // $array can contain an array of error messages or an array of parameters to be used for the insert/update query
 
-        if(array_key_exists("status", $d) == true) {
-            $response = $d;
-            echo json_encode($response);
-        } else {
-            $user = $d;
+        if($array['outcome'] == "no_errors") {
+            // all user inputs are valid => the user can be created/updated 
+            $user = $array;
             ModelUser::save($user);
-            User::respondUserTableHtml();
+            User::respondUserTableHtml(); // it shows to the user the updated user_table
+        } elseif ($array['outcome'] == "errors") {
+            // some user input is not valid
+            $fail_response = User::getEmptyFailResponse();
+            $fail_response['data'] = $array;
+            
+            echo json_encode($fail_response);
         }
     }
 
     public static function validateUserInput() {
-        $user = array();
-        $fail_response = User::getEmptyFailResponse();
+        $user = array(); // this array contains the parameters to be used for the insert/update query
+        $error_messages = array();
+
+        $user['outcome'] = "no_errors";
+        $error_messages['outcome'] = "errors";
         
         if($GLOBALS['f3']->exists('POST.name')) {
             $name = trim($GLOBALS['f3']->get('POST.name'));
             if($name == "") {
-                $fail_response['data']['name'] = 'Il campo "nome" non può essere lasciato vuoto';
-                return $fail_response;
+                $error_messages['name'] = 'Il campo "nome" non può essere lasciato vuoto';
+                return $error_messages;
             } else {
                 $user['name'] = $name;
             }
@@ -105,15 +112,15 @@ class User extends AbastractController{
         if($GLOBALS['f3']->exists('POST.email')) {
             $email = trim($GLOBALS['f3']->get('POST.email'));
             if($email == "") {
-                $fail_response['data']['email'] = 'Il campo "email" non può essere lasciato vuoto';
-                return $fail_response;
+                $error_messages['email'] = 'Il campo "email" non può essere lasciato vuoto';
+                return $error_messages;
             } else {
                 if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     // the submitted email is valid
                     $user['email'] = $email;
                 } else {
-                    $fail_response['data']['email'] = "L'email inserita non è valida";
-                    return $fail_response;
+                    $error_messages['email'] = "L'email inserita non è valida";
+                    return $error_messages;
                 }
             }
         }
@@ -121,8 +128,8 @@ class User extends AbastractController{
         if($GLOBALS['f3']->exists('POST.birth_year')) {
             $birth_year = $GLOBALS['f3']->get('POST.birth_year');
             if($birth_year == '-') {
-                $fail_response['data']['birth_year'] = "Non è stato selezionato l'anno di nascita";
-                return $fail_response;
+                $error_messages['birth_year'] = "Non è stato selezionato l'anno di nascita";
+                return $error_messages;
             } else {
                 $user['birth_year'] = intval($birth_year);
             }
@@ -149,17 +156,7 @@ class User extends AbastractController{
             $user['user_id'] = $GLOBALS['f3']->get('POST.user_id');
         }
 
-        return $user; // this array contains the parameters to be use for the insert query
-    }
-
-    public static function getUserInput() {
-        $user = array();
-
-        if($GLOBALS['f3']->exists('POST.name')) {
-            $user['name'] = $GLOBALS['f3']->get('POST.email');
-        }
-
-
+        return $user; // this array is returned if and only if the required user inputs are valid
     }
 
     public static function update() {
