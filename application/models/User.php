@@ -31,7 +31,7 @@ class User {
         // CHECK
         if($user['user_id'] == null) {
             // CREATION of the user
-            $GLOBALS['f3']->get('DB')->exec("INSERT INTO user (name, email, birth_year, is_male, privacy_agreed) VALUES ({$user['name']}, {$user['email']}, {$user['birth_year']}, {$user['is_male']}, {$user['privacy_agreed']})");
+            $GLOBALS['f3']->get('DB')->exec("INSERT INTO user (name, email, birth_year, is_male, privacy_agreed) VALUES ({$user['name']}, {$user['email']}, {$user['birth_year']}, {$user['is_male']}, {$user['privacy_agreed']});");
         } else {
             // UPDATE of the user
             $GLOBALS['f3']->get('DB')->exec(

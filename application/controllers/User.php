@@ -27,7 +27,7 @@ class User extends AbastractController{
         $user_table = User::makeUserTable($users);
         
         $GLOBALS['f3']->set('page_content', $user_table); // inject user_table into layout
-        echo $GLOBALS['view']->render('application/layouts/layout.html');
+        echo $GLOBALS['view']->render('application/layouts/layout.html'); 
     }
 
     public static function makeUserTable($users) {
@@ -83,13 +83,13 @@ class User extends AbastractController{
         
         $d = User::validateUserInput();
 
-        if($d['status'] == "success") {
+        if(array_key_exists("status", $d) == true) {
+            $response = $d;
+            echo json_encode($response);
+        } else {
             $user = $d;
             ModelUser::save($user);
             User::respondUserTableHtml();
-        } else if ($d['status'] == "fail") {
-            $response = $d;
-            echo json_encode($response);
         }
     }
 

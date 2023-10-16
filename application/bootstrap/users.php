@@ -2,6 +2,8 @@
 // require 'vendor/autoload.php';
 require 'vendor/autoload.php';
 
+ini_set("log_errors", 1);
+ini_set("error_log", 'error_log.txt');
 
 // f3
 $GLOBALS['f3'] = \Base::instance(); //we use a superglobsl because we don't  have f3 instance inside controller and models classes

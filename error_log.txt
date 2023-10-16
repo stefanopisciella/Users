@@ -1,0 +1,117 @@
+[16-Oct-2023 17:26:53 Europe/Berlin] Undefined array key "status"
+[16-Oct-2023 17:26:53 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:86] 
+[16-Oct-2023 17:26:53 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:86] Base->{closure}()
+[16-Oct-2023 17:26:53 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:26:53 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:29:50 Europe/Berlin] Undefined array key "status"
+[16-Oct-2023 17:29:50 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:89] 
+[16-Oct-2023 17:29:50 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:89] Base->{closure}()
+[16-Oct-2023 17:29:50 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:29:50 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:30:32 Europe/Berlin] Undefined array key "status"
+[16-Oct-2023 17:30:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:89] 
+[16-Oct-2023 17:30:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:89] Base->{closure}()
+[16-Oct-2023 17:30:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:30:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:31:44 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:31:44 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Pisciella, email = cyberincognit@gmail.com, birth_year = 2003, is_male = 1, p...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:31:44 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:31:44 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:31:44 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:31:44 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:31:44 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:36:20 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:36:20 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'Pisciella, email = cyberincognit@gmail.com, birth_year = 2003, is_male = 1, p...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:36:20 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:36:20 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:41] DB\SQL->exec()
+[16-Oct-2023 17:36:20 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:36:20 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:36:20 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:40:48 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:40:48 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2002, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:40:48 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:40:48 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:40:48 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:40:48 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:40:48 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:47:26 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:47:26 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2005, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:47:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:47:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:47:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:47:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:47:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:47:57 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:47:57 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2005, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:47:57 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:47:57 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:47:57 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:47:57 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:47:57 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:50:49 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:50:49 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2005, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:50:49 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:50:49 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:50:49 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:50:49 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:50:49 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:51:11 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:51:11 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2003, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:51:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:51:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:51:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:51:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:51:11 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:51:38 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:51:38 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2003, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:51:38 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:51:38 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:51:38 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:51:38 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:51:38 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:52:00 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:52:00 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2004, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:52:00 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:52:00 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:52:00 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:52:00 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:52:00 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:54:24 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:54:24 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2004, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:54:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:54:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:54:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:54:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:54:24 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:55:26 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:55:26 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2003, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:55:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:55:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:55:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:55:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:55:26 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:58:33 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:58:33 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2000, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:58:33 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:58:33 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:58:33 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:58:33 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:58:33 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[16-Oct-2023 17:59:01 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[16-Oct-2023 17:59:01 Europe/Berlin] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@gmail.com, birth_year = 2000, is_male = 1, privacy_agreed = true
+          ...' at line 2 [C:\programs_that_require_write_permission\htdocs\Users\vendor\bcosca\fatfree-core\db\sql.php:230]
+[16-Oct-2023 17:59:01 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/vendor/bcosca/fatfree-core/db/sql.php:230] PDOStatement->execute()
+[16-Oct-2023 17:59:01 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/models/User.php:37] DB\SQL->exec()
+[16-Oct-2023 17:59:01 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
+[16-Oct-2023 17:59:01 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[16-Oct-2023 17:59:01 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()

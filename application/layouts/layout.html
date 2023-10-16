@@ -65,7 +65,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </div>
                       <!-- we need to store the user_id inside this hidden input when the user need to update a user  -->
-                      <input name="user_id" hidden type="text" id="input_user_id" placeholder="" value="empty">
+                      <input name="user_id" hidden type="text" id="input_user_id" placeholder="" value="not_set">
                       <!-- select -->
                       <div id="highlight_birth_year_error" class="form-group">
                         <div class="row">
@@ -267,8 +267,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             function saveUser() {
                 resetTheForm(); // so that the client will not see graphic elements relative to the previous submit
                 
+                // var user_id = $('#input_user_id').attr("value");
                 var user_id = $('#input_user_id').val();
-                if(user_id != "null") { 
+
+
+                //
+                alert(user_id);
+
+                if(user_id != "not_set") { 
                     user_id = parseInt(user_id);
                 }
 
@@ -276,6 +282,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 var url = generateUrl(user_id);
                 var post_content = generatePostContent(user_id);
+
+                //
+                alert(url);
                 
                 $.post(url, post_content, "json")
                  .done(function(data) {
@@ -321,7 +330,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                  })
                  .fail(function(jqXHR, textStatus, errorThrown) {
                     // alert("ERRONEO");
-                    alert(errorThrown);
+                    // alert(errorThrown);
 
                  });
             }
@@ -330,9 +339,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var current_url = window.location.href;
                 var url = current_url + '/save/';
                 
-                if(user_id != "null") {
+                if(user_id != "not_set") {
                     // client has to update the user
                     url += user_id;
+
+                    //
+                    alert("CODDIO");
                 } 
 
                 return url;
