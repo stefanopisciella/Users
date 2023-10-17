@@ -11,7 +11,7 @@
               endif;?>
     </td>
     <td>
-        <?php if($privacy_agreed == 1): 
+        <?php if($privacy_agreed == true): 
                 echo '<span class="glyphicon glyphicon-ok" id="privacy_agreed_icon" aria-hidden="true"></span>';
               endif;?>
     </td>

@@ -136,15 +136,15 @@ class User extends AbastractController{
         }
 
         if($GLOBALS['f3']->exists('POST.is_male') && $GLOBALS['f3']->exists('POST.is_female') ) {
-            $is_male = $GLOBALS['f3']->exists('POST.is_male');
-            $is_female = $GLOBALS['f3']->exists('POST.is_female');
+            $is_male = $GLOBALS['f3']->get('POST.is_male');
+            $is_female = $GLOBALS['f3']->get('POST.is_female');
             
             if($is_male == false && $is_female == false) {
                 // CASE1: user didn't select his/her sex
                 $user['is_male'] = null;
             }
 
-            // CASE2: user select his/her sex
+            // CASE2: user selected his/her sex
             $user['is_male'] = $is_male;
         }
 

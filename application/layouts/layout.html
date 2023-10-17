@@ -55,6 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                               <label id="error_email_label" for="input_email" class="control-label"></label>
                           </div>
                         </div>
+                        <!-- email -->
                         <div class="row">
                           <div class="col-sm-1 col-sm-offset-1">
                               <label for="input_email" class="control-label">Email</label>
@@ -63,6 +64,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                               <input name="email" type="email" class="form-control" id="input_email" placeholder="" value="" onclick="reactivateSaveButton();">
                           </div>
                         </div>
+                        <!-- END email -->
                     </div>
                       <!-- we need to store the user_id inside this hidden input when the user need to update a user  -->
                       <input name="user_id" hidden type="text" id="input_user_id" placeholder="" value="not_set">
@@ -90,17 +92,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <!-- END select -->
                     
                       <!-- radios -->
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">Sesso</label>
-                          <div class="col-sm-4"> <!-- we give 2 columns to the select for resizing it (because by default this select is too large) -->
-                              <label class="radio-inline">
-                                  <input name="is_female" type="radio" name="inlineRadioOptions" id="is_female_button" value="false"> Femmina
-                              </label>
-                              <label class="radio-inline">
-                                  <input name="is_male" type="radio" name="inlineRadioOptions" id="is_male_button" value="false"> Maschio
-                              </label>
-                          </div>
-                      </div>
+                        <div class="row">
+                            <div class="col-sm-1 col-sm-offset-1">
+                                <label class="control-label">Sesso</label>
+                            </div>
+                            <div class="col-sm-9">
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="is_female_button" value="option1"> Femmina
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="inlineRadioOptions" id="is_male_button" value="option2"> Maschio
+                                </label>
+                            </div>
+                        </div>
                       <!-- END radios -->
 
                       <div class="form-group">
@@ -199,9 +203,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 
                 $.get(current_url + '/remove/' + user_id)
                  .done(function(data) {
-                    var deserialized_response = JSON.parse(data);
-                    var new_user_table = deserialized_response.data.html;
-                    $("#page_content").html(new_user_table); // replace the old user_table with the updated user-table
+                    injectUpdatedUserTable(data);
                  });
             }
 
@@ -288,6 +290,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     
                     if(responded_json.status == "success") {
                         // client filled properly the form => "reponded_json" contains the html of the updated user_table
+                        injectUpdatedUserTable(data);
                         
                         
                     } else if (responded_json.status == "fail") {
@@ -377,6 +380,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 $("#highlight_name_error").attr("class", "form-group");
                 $("#highlight_email_error").attr("class", "form-group");
                 $("#highlight_birth_year_error").attr("class", "form-group");
+            }
+
+            function injectUpdatedUserTable(response) {
+                var deserialized_response = JSON.parse(response);
+                var new_user_table = deserialized_response.data.html;
+                $("#page_content").html(new_user_table); // replace the old user_table with the updated user-table
             }
 
             
