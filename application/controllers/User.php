@@ -139,13 +139,13 @@ class User extends AbastractController{
             $is_male = $GLOBALS['f3']->get('POST.is_male');
             $is_female = $GLOBALS['f3']->get('POST.is_female');
             
-            if($is_male == false && $is_female == false) {
+            if($is_male == "false" && $is_female == "false") { // !!! without surrendering the false with double quotes the if statement doesn't work
                 // CASE1: user didn't select his/her sex
-                $user['is_male'] = null;
+                $user['is_male'] = "NULL";
+            } else {
+                // CASE2: user selected his/her sex
+                $user['is_male'] = $is_male;
             }
-
-            // CASE2: user selected his/her sex
-            $user['is_male'] = $is_male;
         }
 
         if($GLOBALS['f3']->exists('POST.privacy_agreed')) {

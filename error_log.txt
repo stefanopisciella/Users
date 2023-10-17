@@ -190,3 +190,9 @@
 [16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/controllers/User.php:91] models\User::save()
 [16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/application/bootstrap/users.php:37] Base->run()
 [16-Oct-2023 19:32:32 Europe/Berlin] [C:/programs_that_require_write_permission/htdocs/Users/public/index.php:5] require_once()
+[17-Oct-2023 11:36:48 Europe/Berlin] Xdebug: [Step Debug] Time-out connecting to debugging client, waited: 200 ms. Tried: localhost:9003 (through xdebug.client_host/xdebug.client_port).
+[17-Oct-2023 11:36:48 Europe/Berlin] syntax error, unexpected end of file, expecting "elseif" or "else" or "endif" [C:\programs_that_require_write_permission\xampp\htdocs\Users\application\views\table_row.php:44]
+[17-Oct-2023 11:36:48 Europe/Berlin] [C:/programs_that_require_write_permission/xampp/htdocs/Users/application/controllers/User.php:46] View->render()
+[17-Oct-2023 11:36:48 Europe/Berlin] [C:/programs_that_require_write_permission/xampp/htdocs/Users/application/controllers/User.php:27] controllers\User::makeUserTable()
+[17-Oct-2023 11:36:48 Europe/Berlin] [C:/programs_that_require_write_permission/xampp/htdocs/Users/application/bootstrap/users.php:37] Base->run()
+[17-Oct-2023 11:36:48 Europe/Berlin] [C:/programs_that_require_write_permission/xampp/htdocs/Users/public/index.php:5] require_once()

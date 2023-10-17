@@ -4,11 +4,18 @@
     <td><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></td>
     <td><?php echo $birth_year; ?></td>
     <td>
-        <?php if($is_male == 1): 
-                echo "Maschio";
+        <?php if(is_null($is_male)): 
+                echo "-";
               else:
-                echo 'Femmina';
-              endif;?>
+                if($is_male == 0): 
+                  echo "Femmina";
+                endif;
+  
+                if($is_male == 1): 
+                  echo "Maschio";
+                endif;
+              endif;
+        ?>
     </td>
     <td>
         <?php if($privacy_agreed == true): 
