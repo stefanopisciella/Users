@@ -264,8 +264,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 $('#birth_year').val("-");
                 
                 // uncheck the radio buttons
-                $('#is_male_button').attr("checked", false);  // with $('#is_male_button').removeAttr("checked"); doesn't work
-                $('#is_female_button').attr("checked", false); 
+                $('#is_male_button').prop("checked", false);  // with $('#is_male_button').removeAttr("checked"); doesn't work
+                $('#is_female_button').prop("checked", false); 
 
                 // uncheck the check box
                 $('#privacy_button').attr("checked", false); 
