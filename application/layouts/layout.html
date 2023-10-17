@@ -215,22 +215,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 $.get(url, "json")
                  .done(function(data) {
                     var old_user = JSON.parse(data); // "data" contains the rsponded json
-                     
-                    $('#input_name').val(old_user.name); // an alternative to this is statement is: $('#input_name').attr('value', JSON.parse(data).name);
-                    $('#input_email').val(old_user.email);
-                    $('#birth_year').val(old_user.birth_year);
-                    
-                    // set the radio button
-                    if(old_user.is_male == true) {
-                        $('#is_male_button').attr("checked", "checked"); // it adds the "checked" attribute to this radio buton
-                    } else {
-                        $('#is_female_button').attr("checked", "checked"); // it adds the "checked" attribute to this radio buton
-                    }
-
-                    // set the check box
-                    if(old_user.privacy_agreed == true) {
-                        $('#privacy_button').attr("checked", "checked");
-                    }
+                    showOldUserData(old_user);
 
                     cheangeModalHeader(true); // it changes the modal header text to "Modifica Utente"
 
@@ -243,17 +228,47 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 cheangeModalHeader(false); // it changes the modal header text to "Crea Utente"
             }
 
+            function showOldUserData(old_user) {
+                $('#input_name').val(old_user.name); // an alternative to this is statement is: $('#input_name').attr('value', JSON.parse(data).name);
+                $('#input_email').val(old_user.email);
+                $('#birth_year').val(old_user.birth_year);
+                
+                // set the radio button
+                if(old_user.is_male == true) {
+                    /*
+                    $('#is_male_button').attr("checked", true); 
+                    $('#is_female_button').attr("checked", false); */
+
+                    $("#is_male_button").prop('checked', true); // !!! don't use $('#is_female_button').attr("checked", true); 
+                    $("#is_female_button").prop('checked', false); 
+
+                } else {
+                    /*
+                    $('#is_female_button').attr("checked", true); 
+                    $('#is_male_button').attr("checked", false); */
+                    $("#is_female_button").prop('checked', true);
+                    $("#is_male_button").prop('checked', false); 
+                }
+
+                // set the check box
+                if(old_user.privacy_agreed == true) {
+                    $('#privacy_button').attr("checked", true);
+                } else {
+                    $('#privacy_button').attr("checked", false);
+                }
+            }
+
             function resetAllModalInputs() {
                 $('#input_name').val(""); // an alternative to this is statement is: $('#input_name').attr('value', JSON.parse(data).name);
                 $('#input_email').val("");
                 $('#birth_year').val("-");
                 
                 // uncheck the radio buttons
-                $('#is_male_button').removeAttr("checked"); 
-                $('#is_female_button').removeAttr("checked");
+                $('#is_male_button').attr("checked", false);  // with $('#is_male_button').removeAttr("checked"); doesn't work
+                $('#is_female_button').attr("checked", false); 
 
                 // uncheck the check box
-                $('#privacy_button').removeAttr("checked");
+                $('#privacy_button').attr("checked", false); 
             }
 
             function cheangeModalHeader(is_updating) {
