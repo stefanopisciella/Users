@@ -240,13 +240,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     $('#is_female_button').attr("checked", false); */
 
                     $("#is_male_button").prop('checked', true); // !!! don't use $('#is_female_button').attr("checked", true); 
-                    $("#is_female_button").prop('checked', false); 
+                    $("#is_female_button").prop('checked', false); // it deselects the radio button
 
                 } else {
                     /*
                     $('#is_female_button').attr("checked", true); 
                     $('#is_male_button').attr("checked", false); */
-                    $("#is_female_button").prop('checked', true);
+                    $("#is_female_button").prop('checked', true); // it selects the radio button
                     $("#is_male_button").prop('checked', false); 
                 }
 
@@ -314,7 +314,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         var error_name_massage = responded_json.data.name;
                         if(error_name_massage != null) {
                             // there is an error in the "name" input
-                            $("#highlight_name_error").attr("class", "form-group has-error");
+                            $("#highlight_name_error").attr("class", "form-group has-error"); // it shows the red highlighting after the submit of not valid data
                             $('#error_name_label').text(error_name_massage);
                         }
 
@@ -351,7 +351,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 if(user_id != "not_set") {
                     // client has to update the user
                     url += user_id;
-
                 } 
 
                 return url;
@@ -367,8 +366,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                 var post_content = {"user_id" : user_id, "name" : name , "email" : email, "birth_year" : birth_year, "is_female" : is_female, "is_male" : is_male, "privacy_agreed" : privacy_agreed};
 
-                //
-                alert(JSON.stringify(post_content));
+                // alert(JSON.stringify(post_content)); // for printing the value of the json
 
                 return post_content;
             }
@@ -402,9 +400,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 var new_user_table = deserialized_response.data.html;
                 $("#page_content").html(new_user_table); // replace the old user_table with the updated user-table
             }
-
-            
-
 
             /*
             function userHasToBeUpdated() {

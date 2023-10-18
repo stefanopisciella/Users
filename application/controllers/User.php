@@ -194,11 +194,4 @@ class User extends AbastractController{
 
         return $response;
     }
-
-    public static function prova() {
-        if($GLOBALS['f3']->exists('POST.email')) {
-            echo $GLOBALS['f3']->get('POST.email') ;
-        }
-
-    }
 }
